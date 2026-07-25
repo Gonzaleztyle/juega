@@ -13,9 +13,10 @@
             --primary: #0A52E2;        /* Azul eléctrico */
             --primary-dark: #0639A0;
             --accent-orange: #FF4500;   /* Naranja neón */
-            --accent-green: #008B4B;    /* Verde */
+            --accent-green: #20DF7F;    /* Verde brillante */
             --accent-yellow: #FFD000;   /* Amarillo brillante */
             --accent-pink: #F7A8B8;     /* Rosado dulce */
+            --accent-blue-light: #72C5FF;/* Azul claro */
             --text-dark: #1A1A1A;      /* NEGRO */
             --border-dark: #1A1A1A;
         }
@@ -43,17 +44,21 @@
             margin-bottom: 28px;
         }
 
-        /* Bloques de título estilo la imagen enviada */
+        /* Bloque de título principal - Fondo Amarillo / Texto Negro */
         .title-block-1 {
             display: inline-block;
-            background: var(--primary);
-            color: #FFFFFF;
-            padding: 8px 16px;
+            background: var(--accent-yellow);
+            color: var(--text-dark);
+            padding: 10px 20px;
             border: 3px solid var(--border-dark);
             box-shadow: 4px 4px 0px var(--border-dark);
-            font-size: 2rem;
-            font-weight: 700;
             transform: rotate(-1deg);
+        }
+
+        .title-block-1 h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
         }
 
         header p {
@@ -147,7 +152,7 @@
         .btn {
             width: 100%;
             background: var(--accent-orange);
-            color: white;
+            color: var(--text-dark);
             border: 3px solid var(--border-dark);
             padding: 14px;
             font-size: 1rem;
@@ -165,7 +170,7 @@
         .btn:hover {
             transform: translateY(-2deg);
             box-shadow: 6px 6px 0px var(--border-dark);
-            background: #E03E00;
+            background: #FF5714;
         }
 
         .btn:active {
@@ -174,12 +179,13 @@
         }
 
         .btn-demo {
-            background: var(--primary);
+            background: var(--accent-blue-light);
+            color: var(--text-dark);
             margin-top: 12px;
         }
 
         .btn-demo:hover {
-            background: var(--primary-dark);
+            background: #50B5FF;
         }
 
         #api-key-container {
@@ -210,10 +216,11 @@
             margin-bottom: 20px;
         }
 
+        /* Título del juego generado: Fondo Rosado y Texto Negro */
         .game-title {
             display: inline-block;
-            background: var(--accent-orange);
-            color: #FFFFFF;
+            background: var(--accent-pink);
+            color: var(--text-dark);
             padding: 10px 16px;
             border: 3px solid var(--border-dark);
             box-shadow: 4px 4px 0px var(--border-dark);
@@ -243,7 +250,7 @@
             border: 2px solid var(--border-dark);
         }
 
-        .badge-green { background: var(--accent-green); color: white; }
+        .badge-green { background: var(--accent-green); color: var(--text-dark); }
         .badge-pink { background: var(--accent-pink); color: var(--text-dark); }
 
         .game-section {
@@ -255,7 +262,7 @@
             color: var(--text-dark);
         }
 
-        /* Bloques multicolores para subtítulos */
+        /* Subtítulos con fondos de color y texto oscuro/negro */
         .game-section h3 {
             font-size: 0.95rem;
             margin-bottom: 12px;
@@ -266,12 +273,13 @@
             padding: 6px 12px;
             border: 2px solid var(--border-dark);
             box-shadow: 3px 3px 0px var(--border-dark);
+            color: var(--text-dark);
         }
 
-        .section-adult h3 { background: var(--accent-green); color: #FFFFFF; }
-        .section-kids h3 { background: var(--primary); color: #FFFFFF; }
-        .section-steps h3 { background: var(--accent-yellow); color: var(--text-dark); }
-        .section-extra h3 { background: var(--accent-orange); color: #FFFFFF; }
+        .section-adult h3 { background: var(--accent-green); }
+        .section-kids h3 { background: var(--accent-blue-light); }
+        .section-steps h3 { background: var(--accent-yellow); }
+        .section-extra h3 { background: var(--accent-pink); }
 
         .game-section p, .game-section ol {
             font-weight: 400;
@@ -388,7 +396,7 @@
 
     <div class="loading" id="loading">
         <div class="spinner"></div>
-        <p style="font-weight: 700; font-size: 1.1rem; color: var(--primary);">INVENTANDO UNA SUPER AVENTURA SEGURA...</p>
+        <p style="font-weight: 700; font-size: 1.1rem; color: var(--text-dark);">INVENTANDO UNA SUPER AVENTURA SEGURA...</p>
     </div>
 
     <div class="card card-result" id="result">
@@ -496,7 +504,7 @@ Materiales disponibles: ${materials}.`;
 
                 <div class="game-section section-kids" style="background: #EBF3FF;">
                     <h3><i data-lucide="mega-phone" size="18"></i> INSTRUCCIONES PARA LOS NINOS:</h3>
-                    <p style="font-weight: 700; color: var(--primary);">"${data.reglas_ninos}"</p>
+                    <p style="font-weight: 700; color: var(--text-dark);">"${data.reglas_ninos}"</p>
                 </div>
 
                 <div class="game-section section-steps">
