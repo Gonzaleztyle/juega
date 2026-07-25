@@ -8,16 +8,17 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --bg-main: #F4EFEB;            /* Marfil cálido */
+            --bg-main: #F4EFEB;
             --border-dark: #121212;
             
-            /* Paleta Vibrante de la referencia */
-            --color-purple: #7029ED;       /* Púrpura */
-            --color-yellow: #FFD200;       /* Amarillo */
-            --color-cyan: #00E5FF;         /* Cían */
-            --color-coral: #FF4365;        /* Coral / Rojo */
-            --color-mint: #00E676;         /* Verde Menta */
-            --text-dark: #121212;
+            /* Paleta Estricta Solicitada */
+            --color-blue: #0055FF;     /* Azul puro */
+            --color-yellow: #FFD200;   /* Amarillo */
+            --color-red: #FF3333;      /* Rojo */
+            --color-pink: #FF66B2;     /* Rosado */
+            --color-green: #00E676;    /* Verde */
+            --color-white: #FFFFFF;    /* Blanco */
+            --color-black: #121212;    /* Negro */
         }
 
         * {
@@ -30,7 +31,7 @@
 
         body {
             background-color: var(--bg-main);
-            color: var(--text-dark);
+            color: var(--color-black);
             line-height: 1.4;
             padding: 24px 16px;
             max-width: 800px;
@@ -43,10 +44,11 @@
             margin-bottom: 28px;
         }
 
-        /* 1. TITULO PRINCIPAL: Texto Púrpura sobre Fondo Amarillo */
+        /* COMBINACIÓN: AZUL SOBRE AMARILLO */
         .title-block-1 {
             display: inline-block;
             background: var(--color-yellow);
+            color: var(--color-blue);
             padding: 12px 24px;
             border: 3px solid var(--border-dark);
             box-shadow: 5px 5px 0px var(--border-dark);
@@ -56,38 +58,44 @@
         .title-block-1 h1 {
             font-size: 2.2rem;
             font-weight: 900;
-            color: var(--color-purple);
+            color: var(--color-blue);
             letter-spacing: 1px;
         }
 
+        /* COMBINACIÓN: AZUL SOBRE ROJO */
         header p {
-            color: var(--color-coral);
-            font-size: 0.95rem;
-            font-weight: 800;
+            display: inline-block;
+            background: var(--color-red);
+            color: var(--color-blue);
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            font-weight: 900;
             margin-top: 14px;
+            border: 2px solid var(--border-dark);
         }
 
-        /* Contenedor principal CÍAN */
+        /* COMBINACIÓN: ROSADO SOBRE AZUL */
         .card {
-            background: var(--color-cyan);
+            background: var(--color-blue);
+            color: var(--color-pink);
             border-radius: 20px;
             padding: 24px;
             border: 3px solid var(--border-dark);
             box-shadow: 6px 6px 0px var(--border-dark);
             margin-bottom: 28px;
-            color: var(--text-dark);
         }
 
+        /* NEGRO SOBRE BLANCO */
         .card-result {
-            background: #FFFFFF;
-            color: var(--text-dark);
+            background: var(--color-white);
+            color: var(--color-black);
         }
 
         .form-group {
             margin-bottom: 20px;
         }
 
-        /* Etiquetas del formulario: Texto Amarillo/Blanco sobre Bloques de Color sobre el Cían */
+        /* COMBINACIÓN: AZUL SOBRE AMARILLO */
         label {
             display: inline-flex;
             align-items: center;
@@ -96,13 +104,14 @@
             margin-bottom: 8px;
             font-size: 0.85rem;
             padding: 4px 10px;
-            background: var(--color-purple);
-            color: var(--color-yellow);
+            background: var(--color-yellow);
+            color: var(--color-blue);
             border: 2px solid var(--border-dark);
             box-shadow: 2px 2px 0px var(--border-dark);
             border-radius: 6px;
         }
 
+        /* NEGRO SOBRE BLANCO */
         input[type="text"], input[type="number"], select {
             width: 100%;
             padding: 12px 14px;
@@ -111,17 +120,18 @@
             font-size: 0.95rem;
             font-weight: 700;
             outline: none;
-            background: #FFF;
-            color: var(--text-dark);
+            background: var(--color-white);
+            color: var(--color-black);
         }
 
         .checkbox-group {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
             gap: 10px;
             margin-top: 8px;
         }
 
+        /* NEGRO SOBRE BLANCO */
         .checkbox-label {
             display: flex;
             align-items: center;
@@ -129,8 +139,8 @@
             font-weight: 800;
             font-size: 0.8rem;
             cursor: pointer;
-            background: #FFF;
-            color: var(--text-dark);
+            background: var(--color-white);
+            color: var(--color-black);
             padding: 10px 12px;
             border-radius: 12px;
             border: 2px solid var(--border-dark);
@@ -142,14 +152,14 @@
             cursor: pointer;
             width: 18px;
             height: 18px;
-            accent-color: var(--color-purple);
+            accent-color: var(--color-blue);
         }
 
-        /* Botón 1: Texto Púrpura sobre Fondo Verde Menta */
+        /* BOTÓN 1: VERDE SOBRE ROSADO */
         .btn {
             width: 100%;
-            background: var(--color-mint);
-            color: var(--color-purple);
+            background: var(--color-pink);
+            color: var(--color-green);
             border: 3px solid var(--border-dark);
             padding: 14px;
             font-size: 1rem;
@@ -169,16 +179,17 @@
             box-shadow: 6px 6px 0px var(--border-dark);
         }
 
-        /* Botón 2: Texto Amarillo sobre Fondo Púrpura */
+        /* BOTÓN 2: AZUL SOBRE AMARILLO */
         .btn-demo {
-            background: var(--color-purple);
-            color: var(--color-yellow);
+            background: var(--color-yellow);
+            color: var(--color-blue);
             margin-top: 12px;
         }
 
-        /* API Key: Texto Coral sobre Fondo Amarillo */
+        /* COMBINACIÓN: ROSADO SOBRE AZUL */
         #api-key-container {
-            background: var(--color-yellow);
+            background: var(--color-blue);
+            color: var(--color-pink);
             border: 3px solid var(--border-dark);
             padding: 14px;
             border-radius: 16px;
@@ -191,9 +202,16 @@
             border: none;
             box-shadow: none;
             padding: 0;
-            color: var(--color-coral);
+            color: var(--color-pink);
             font-weight: 900;
             font-size: 0.9rem;
+        }
+
+        #api-key-container small {
+            color: var(--color-pink);
+            display: block;
+            margin-top: 6px;
+            font-weight: 800;
         }
 
         #result {
@@ -211,11 +229,11 @@
             margin-bottom: 20px;
         }
 
-        /* Título del Juego: Texto Cían sobre Fondo Coral */
+        /* COMBINACIÓN: AZUL SOBRE ROJO */
         .game-title {
             display: inline-block;
-            background: var(--color-coral);
-            color: var(--color-cyan);
+            background: var(--color-red);
+            color: var(--color-blue);
             padding: 10px 16px;
             border: 3px solid var(--border-dark);
             box-shadow: 4px 4px 0px var(--border-dark);
@@ -243,17 +261,18 @@
             border: 2px solid var(--border-dark);
         }
 
-        .badge-1 { background: var(--color-yellow); color: var(--color-purple); }
-        .badge-2 { background: var(--color-mint); color: var(--text-dark); }
-        .badge-3 { background: var(--color-cyan); color: var(--color-purple); }
+        .badge-1 { background: var(--color-yellow); color: var(--color-blue); }
+        .badge-2 { background: var(--color-pink); color: var(--color-green); }
+        .badge-3 { background: var(--color-red); color: var(--color-blue); }
 
+        /* SECCIONES EN RESULTADO: NEGRO SOBRE BLANCO */
         .game-section {
-            background: #FAF6ED;
+            background: var(--color-white);
             border: 2px solid var(--border-dark);
             border-radius: 14px;
             padding: 16px;
             margin-bottom: 16px;
-            color: var(--text-dark);
+            color: var(--color-black);
         }
 
         .game-section h3 {
@@ -268,14 +287,15 @@
             box-shadow: 3px 3px 0px var(--border-dark);
         }
 
-        /* Combinaciones exactas de subtítulos */
-        .section-adult h3 { background: var(--color-mint); color: var(--color-purple); }
-        .section-kids h3 { background: var(--color-purple); color: var(--color-yellow); }
-        .section-steps h3 { background: var(--color-coral); color: var(--color-cyan); }
-        .section-extra h3 { background: var(--color-yellow); color: var(--color-coral); }
+        /* SUBTÍTULOS CON LAS COMBINACIONES SOLICITADAS */
+        .section-adult h3 { background: var(--color-yellow); color: var(--color-blue); }
+        .section-kids h3 { background: var(--color-pink); color: var(--color-green); }
+        .section-steps h3 { background: var(--color-red); color: var(--color-blue); }
+        .section-extra h3 { background: var(--color-blue); color: var(--color-pink); }
 
         .game-section p, .game-section ol {
-            font-weight: 500;
+            font-weight: 600;
+            color: var(--color-black);
         }
 
         .game-section ol {
@@ -286,11 +306,13 @@
             margin-bottom: 8px;
         }
 
+        /* NEGRO SOBRE BLANCO */
         .loading {
             text-align: center;
             display: none;
             padding: 30px;
-            background: white;
+            background: var(--color-white);
+            color: var(--color-black);
             border-radius: 20px;
             border: 3px solid var(--border-dark);
             box-shadow: 6px 6px 0px var(--border-dark);
@@ -298,7 +320,7 @@
 
         .spinner {
             border: 6px solid #f3f3f3;
-            border-top: 6px solid var(--color-purple);
+            border-top: 6px solid var(--color-blue);
             border-radius: 50%;
             width: 48px;
             height: 48px;
@@ -311,15 +333,16 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* SEGURIDAD: AZUL SOBRE ROJO */
         .safety-box {
-            background: #FFEBEB;
-            border: 3px solid var(--color-coral);
+            background: var(--color-red);
+            color: var(--color-blue);
+            border: 3px solid var(--border-dark);
             padding: 14px;
             border-radius: 14px;
             margin-top: 20px;
             font-size: 0.85rem;
-            color: #990000;
-            font-weight: 700;
+            font-weight: 800;
         }
     </style>
 </head>
@@ -329,13 +352,14 @@
         <div class="title-block-1">
             <h1>PLAYCRAFT AI</h1>
         </div>
+        <br>
         <p>JUEGOS FISICOS Y MANUALIDADES 100% SIN PANTALLAS</p>
     </header>
 
     <div id="api-key-container">
-        <label for="apiKey"><i data-lucide="key"></i> OPENAI API KEY (OPCIONAL PARA PRUEBAS):</label>
+        <label for="apiKey"><i data-lucide="key"></i> OPENAI API KEY (OPCIONAL):</label>
         <input type="text" id="apiKey" placeholder="SK-PROJ-...">
-        <small style="color: var(--text-dark); display: block; margin-top: 6px; font-weight: 800;">SI NO TIENES KEY, PRESIONA EL BOTON AZUL DE PROBAR CON RESPUESTA DE PRUEBA.</small>
+        <small>SI NO TIENES KEY, PRESIONA EL BOTON DE RESPUESTA DE PRUEBA.</small>
     </div>
 
     <div class="card">
@@ -358,6 +382,8 @@
                         <option value="Interior (Casa / Depto)">INTERIOR (CASA)</option>
                         <option value="Exterior (Patio / Parque)">EXTERIOR (PATIO/PARQUE)</option>
                         <option value="Espacio muy reducido">ESPACIO REDUCIDO</option>
+                        <option value="Habitación a oscuras">HABITACION A OSCURAS</option>
+                        <option value="Mesa de comedor / Cocina">MESA / COCINA</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -366,6 +392,8 @@
                         <option value="Alta energía (Moverse, carreras)">MOVERSE / CARRERAS</option>
                         <option value="Creativo y Manualidades">CREATIVO / ARTE</option>
                         <option value="Tranquilo y Trabajo en equipo">LOGICA / TRANQUILO</option>
+                        <option value="Búsqueda del tesoro / Pistas">BUSQUEDA DEL TESORO</option>
+                        <option value="Teatro y Roles">TEATRO Y ACTUACION</option>
                     </select>
                 </div>
             </div>
@@ -375,9 +403,14 @@
                 <div class="checkbox-group">
                     <label class="checkbox-label"><input type="checkbox" value="Papel y lápices" checked> PAPEL / LAPICES</label>
                     <label class="checkbox-label"><input type="checkbox" value="Cajas de cartón"> CARTON</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Cinta adhesiva" checked> CINTA</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Cinta adhesiva" checked> CINTA ADHESIVA</label>
                     <label class="checkbox-label"><input type="checkbox" value="Globos"> GLOBOS</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Calcetines o Cojines" checked> CALCETINES</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Calcetines o Cojines" checked> CALCETINES / COJINES</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Vasos de plástico / cartón"> VASOS PLASTICOS</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Lana / Hilo"> LANA / HILO</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Linterna"> LINTERNA</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Platos de papel"> PLATOS DE PAPEL</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Pinzas de ropa"> PINZAS DE ROPA</label>
                     <label class="checkbox-label"><input type="checkbox" value="Ninguno (Solo imaginación)"> SOLO MENTE</label>
                 </div>
             </div>
@@ -389,7 +422,7 @@
 
     <div class="loading" id="loading">
         <div class="spinner"></div>
-        <p style="font-weight: 800; font-size: 1.1rem; color: var(--color-purple);">INVENTANDO UNA SUPER AVENTURA SEGURA...</p>
+        <p style="font-weight: 800; font-size: 1.1rem; color: var(--color-black);">INVENTANDO UNA SUPER AVENTURA SEGURA...</p>
     </div>
 
     <div class="card card-result" id="result">
@@ -403,7 +436,7 @@
             e.preventDefault();
             const apiKey = document.getElementById('apiKey').value.trim();
             if (!apiKey) {
-                alert('INGRESA TU OPENAI API KEY O USA EL BOTON AZUL DE RESPUESTA DE PRUEBA.');
+                alert('INGRESA TU OPENAI API KEY O USA EL BOTON DE RESPUESTA DE PRUEBA.');
                 return;
             }
             await generateGame(apiKey);
@@ -416,7 +449,9 @@
         const categoryImages = {
             'Alta energía (Moverse, carreras)': 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80',
             'Creativo y Manualidades': 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80',
-            'Tranquilo y Trabajo en equipo': 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=800&q=80'
+            'Tranquilo y Trabajo en equipo': 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=800&q=80',
+            'Búsqueda del tesoro / Pistas': 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80',
+            'Teatro y Roles': 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=800&q=80'
         };
 
         async function generateGame(apiKey) {
@@ -495,9 +530,9 @@ Materiales disponibles: ${materials}.`;
                     <p>${data.preparacion_adulto || 'NINGUNA. LISTOS PARA ARRANCAR.'}</p>
                 </div>
 
-                <div class="game-section section-kids" style="background: #EBF3FF;">
+                <div class="game-section section-kids">
                     <h3><i data-lucide="mega-phone" size="18"></i> INSTRUCCIONES PARA LOS NINOS:</h3>
-                    <p style="font-weight: 800; color: var(--color-purple);">"${data.reglas_ninos}"</p>
+                    <p style="font-weight: 800;">"${data.reglas_ninos}"</p>
                 </div>
 
                 <div class="game-section section-steps">
@@ -506,7 +541,7 @@ Materiales disponibles: ${materials}.`;
                 </div>
 
                 ${data.variante_dificil ? `
-                <div class="game-section section-extra" style="background: #FFF0F5;">
+                <div class="game-section section-extra">
                     <h3><i data-lucide="zap" size="18"></i> MODO DESAFIO EXTRA:</h3>
                     <p>${data.variante_dificil}</p>
                 </div>` : ''}
