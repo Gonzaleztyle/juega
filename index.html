@@ -8,16 +8,15 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --bg-main: #FAF6ED;         /* Crema cálido */
-            --card-bg: #FFD000;        /* AMARILLO BRILLANTE */
-            --primary: #0A52E2;        /* Azul eléctrico */
-            --primary-dark: #0639A0;
-            --accent-orange: #FF4500;   /* Naranja neón */
-            --accent-green: #20DF7F;    /* Verde brillante */
-            --accent-yellow: #FFD000;   /* Amarillo brillante */
-            --accent-pink: #F7A8B8;     /* Rosado dulce */
-            --accent-blue-light: #72C5FF;/* Azul claro */
-            --text-dark: #1A1A1A;      /* NEGRO */
+            --bg-main: #FAF6ED;            /* Crema cálido */
+            --card-bg: #FFD000;           /* AMARILLO BRILLANTE */
+            --primary-blue: #0A52E2;       /* Azul eléctrico */
+            --primary-dark-blue: #0639A0;
+            --accent-orange: #FF4500;      /* Naranja neón */
+            --accent-green: #008B4B;       /* Verde */
+            --accent-yellow: #FFD000;      /* Amarillo */
+            --accent-pink: #D81B60;        /* Rosado/Magenta */
+            --text-dark: #1A1A1A;         /* NEGRO */
             --border-dark: #1A1A1A;
         }
 
@@ -44,11 +43,10 @@
             margin-bottom: 28px;
         }
 
-        /* Bloque de título principal - Fondo Amarillo / Texto Negro */
+        /* Bloque principal - Título en Azul Eléctrico */
         .title-block-1 {
             display: inline-block;
-            background: var(--accent-yellow);
-            color: var(--text-dark);
+            background: #FFFFFF;
             padding: 10px 20px;
             border: 3px solid var(--border-dark);
             box-shadow: 4px 4px 0px var(--border-dark);
@@ -58,17 +56,17 @@
         .title-block-1 h1 {
             font-size: 2.2rem;
             font-weight: 700;
-            color: var(--text-dark);
+            color: var(--primary-blue); /* Texto Azul */
         }
 
         header p {
-            color: var(--text-dark);
+            color: var(--accent-orange); /* Subtítulo Naranja */
             font-size: 0.95rem;
             font-weight: 700;
             margin-top: 12px;
         }
 
-        /* Contenedor principal AMARILLO con textos NEGROS */
+        /* Contenedor principal AMARILLO con textos en NEGRO */
         .card {
             background: var(--card-bg);
             border-radius: 20px;
@@ -139,20 +137,20 @@
 
         .checkbox-label:hover {
             transform: translateY(-2deg);
-            background: var(--accent-pink);
+            background: #FFE4EC;
         }
 
         .checkbox-label input {
             cursor: pointer;
             width: 18px;
             height: 18px;
-            accent-color: var(--primary);
+            accent-color: var(--primary-blue);
         }
 
         .btn {
             width: 100%;
             background: var(--accent-orange);
-            color: var(--text-dark);
+            color: #FFFFFF;
             border: 3px solid var(--border-dark);
             padding: 14px;
             font-size: 1rem;
@@ -170,26 +168,21 @@
         .btn:hover {
             transform: translateY(-2deg);
             box-shadow: 6px 6px 0px var(--border-dark);
-            background: #FF5714;
-        }
-
-        .btn:active {
-            transform: translateY(2deg);
-            box-shadow: 2px 2px 0px var(--border-dark);
+            background: #E03E00;
         }
 
         .btn-demo {
-            background: var(--accent-blue-light);
-            color: var(--text-dark);
+            background: var(--primary-blue);
+            color: #FFFFFF;
             margin-top: 12px;
         }
 
         .btn-demo:hover {
-            background: #50B5FF;
+            background: var(--primary-dark-blue);
         }
 
         #api-key-container {
-            background: var(--accent-pink);
+            background: #FFE4EC;
             border: 3px solid var(--border-dark);
             padding: 14px;
             border-radius: 16px;
@@ -198,7 +191,7 @@
         }
 
         #api-key-container label {
-            color: var(--text-dark);
+            color: var(--accent-pink); /* Texto Rosado */
         }
 
         #result {
@@ -216,11 +209,11 @@
             margin-bottom: 20px;
         }
 
-        /* Título del juego generado: Fondo Rosado y Texto Negro */
+        /* Título del Juego: Texto Naranja sobre Fondo Amarillo */
         .game-title {
             display: inline-block;
-            background: var(--accent-pink);
-            color: var(--text-dark);
+            background: var(--accent-yellow);
+            color: var(--accent-orange);
             padding: 10px 16px;
             border: 3px solid var(--border-dark);
             box-shadow: 4px 4px 0px var(--border-dark);
@@ -241,8 +234,8 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: var(--accent-yellow);
-            color: var(--text-dark);
+            background: #FFFFFF;
+            color: var(--primary-blue);
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
@@ -250,8 +243,8 @@
             border: 2px solid var(--border-dark);
         }
 
-        .badge-green { background: var(--accent-green); color: var(--text-dark); }
-        .badge-pink { background: var(--accent-pink); color: var(--text-dark); }
+        .badge-green { color: var(--accent-green); }
+        .badge-pink { color: var(--accent-pink); }
 
         .game-section {
             background: #FAF6ED;
@@ -262,7 +255,7 @@
             color: var(--text-dark);
         }
 
-        /* Subtítulos con fondos de color y texto oscuro/negro */
+        /* Subtítulos con color de texto específico sobre bloques claros/blancos */
         .game-section h3 {
             font-size: 0.95rem;
             margin-bottom: 12px;
@@ -271,15 +264,16 @@
             gap: 8px;
             font-weight: 700;
             padding: 6px 12px;
+            background: #FFFFFF;
             border: 2px solid var(--border-dark);
             box-shadow: 3px 3px 0px var(--border-dark);
-            color: var(--text-dark);
         }
 
-        .section-adult h3 { background: var(--accent-green); }
-        .section-kids h3 { background: var(--accent-blue-light); }
-        .section-steps h3 { background: var(--accent-yellow); }
-        .section-extra h3 { background: var(--accent-pink); }
+        /* Color de los textos por sección */
+        .section-adult h3 { color: var(--accent-green); }   /* Texto Verde */
+        .section-kids h3 { color: var(--primary-blue); }    /* Texto Azul */
+        .section-steps h3 { color: var(--accent-orange); }  /* Texto Naranja */
+        .section-extra h3 { color: var(--accent-pink); }    /* Texto Rosado */
 
         .game-section p, .game-section ol {
             font-weight: 400;
@@ -342,7 +336,7 @@
     <div id="api-key-container">
         <label for="apiKey"><i data-lucide="key"></i> OPENAI API KEY (OPCIONAL PARA PRUEBAS):</label>
         <input type="text" id="apiKey" placeholder="SK-PROJ-...">
-        <small style="color: #1A1A1A; display: block; margin-top: 6px; font-weight: 700;">SI NO TIENES KEY, PRESIONA EL BOTON AZUL DE PROBAR CON RESPUESTA DE PRUEBA.</small>
+        <small style="color: var(--text-dark); display: block; margin-top: 6px; font-weight: 700;">SI NO TIENES KEY, PRESIONA EL BOTON AZUL DE PROBAR CON RESPUESTA DE PRUEBA.</small>
     </div>
 
     <div class="card">
@@ -396,7 +390,7 @@
 
     <div class="loading" id="loading">
         <div class="spinner"></div>
-        <p style="font-weight: 700; font-size: 1.1rem; color: var(--text-dark);">INVENTANDO UNA SUPER AVENTURA SEGURA...</p>
+        <p style="font-weight: 700; font-size: 1.1rem; color: var(--primary-blue);">INVENTANDO UNA SUPER AVENTURA SEGURA...</p>
     </div>
 
     <div class="card card-result" id="result">
@@ -504,7 +498,7 @@ Materiales disponibles: ${materials}.`;
 
                 <div class="game-section section-kids" style="background: #EBF3FF;">
                     <h3><i data-lucide="mega-phone" size="18"></i> INSTRUCCIONES PARA LOS NINOS:</h3>
-                    <p style="font-weight: 700; color: var(--text-dark);">"${data.reglas_ninos}"</p>
+                    <p style="font-weight: 700; color: var(--primary-blue);">"${data.reglas_ninos}"</p>
                 </div>
 
                 <div class="game-section section-steps">
