@@ -3,196 +3,280 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Juegos Infantiles (Sin Pantallas)</title>
+    <title>PlayCraft AI 🎲 - Juegos Sin Pantallas</title>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #1e293b;
-            --border: #e2e8f0;
-            --accent: #10b981;
+            --bg-main: #FAF6ED;         /* Crema cálido */
+            --card-bg: #FFFFFF;        /* Blanco */
+            --primary: #0A52E2;        /* Azul eléctrico */
+            --primary-dark: #0639A0;
+            --accent-orange: #FF4500;   /* Naranja neón */
+            --accent-green: #008B4B;    /* Verde */
+            --accent-yellow: #FFD000;   /* Amarillo brillante */
+            --accent-pink: #F7A8B8;     /* Rosado dulce */
+            --text-dark: #1A1A1A;
+            --border-dark: #1A1A1A;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Fredoka', system-ui, -apple-system, sans-serif;
         }
 
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+
         body {
-            background-color: var(--bg);
-            color: var(--text);
+            background-color: var(--bg-main);
+            color: var(--text-dark);
             line-height: 1.5;
-            padding: 20px;
+            padding: 24px 16px;
             max-width: 800px;
             margin: 0 auto;
         }
 
         header {
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
+        }
+
+        .logo-box {
+            display: inline-block;
+            background: var(--accent-yellow);
+            padding: 8px 16px;
+            border-radius: 16px;
+            border: 3px solid var(--border-dark);
+            box-shadow: 4px 4px 0px var(--border-dark);
+            margin-bottom: 12px;
+            transform: rotate(-2deg);
         }
 
         header h1 {
             color: var(--primary);
-            font-size: 1.8rem;
-            margin-bottom: 6px;
+            font-size: 2.2rem;
+            font-weight: 700;
         }
 
         header p {
-            color: #64748b;
-            font-size: 0.95rem;
+            color: #4A4A4A;
+            font-size: 1rem;
+            font-weight: 600;
         }
 
         .card {
             background: var(--card-bg);
-            border-radius: 12px;
+            border-radius: 20px;
             padding: 24px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            border: 1px solid var(--border);
-            margin-bottom: 24px;
+            border: 3px solid var(--border-dark);
+            box-shadow: 6px 6px 0px var(--border-dark);
+            margin-bottom: 28px;
         }
 
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 6px;
-            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: var(--text-dark);
         }
 
         input[type="text"], input[type="number"], select {
             width: 100%;
-            padding: 10px 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            font-size: 0.95rem;
+            padding: 12px 14px;
+            border: 3px solid var(--border-dark);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
             outline: none;
-            transition: border-color 0.2s;
+            background: #FFF;
+            transition: transform 0.1s;
         }
 
-        input[type="text"]:focus, select:focus {
-            border-color: var(--primary);
+        input:focus, select:focus {
+            background: #F0F6FF;
         }
 
         .checkbox-group {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 10px;
-            margin-top: 6px;
+            margin-top: 8px;
         }
 
         .checkbox-label {
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-weight: normal;
-            font-size: 0.9rem;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
             cursor: pointer;
-            background: #f1f5f9;
-            padding: 8px 10px;
-            border-radius: 6px;
+            background: #FFF;
+            padding: 10px 12px;
+            border-radius: 12px;
+            border: 2px solid var(--border-dark);
+            box-shadow: 2px 2px 0px var(--border-dark);
+            transition: all 0.15s;
+        }
+
+        .checkbox-label:hover {
+            transform: translateY(-2deg);
+            background: var(--accent-pink);
         }
 
         .checkbox-label input {
             cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
         }
 
         .btn {
             width: 100%;
-            background: var(--primary);
+            background: var(--accent-orange);
             color: white;
-            border: none;
-            padding: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 8px;
+            border: 3px solid var(--border-dark);
+            padding: 14px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 14px;
             cursor: pointer;
-            transition: background 0.2s;
+            box-shadow: 4px 4px 0px var(--border-dark);
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .btn:hover {
-            background: var(--primary-hover);
+            transform: translateY(-2deg);
+            box-shadow: 6px 6px 0px var(--border-dark);
+            background: #E03E00;
+        }
+
+        .btn:active {
+            transform: translateY(2deg);
+            box-shadow: 2px 2px 0px var(--border-dark);
         }
 
         .btn-demo {
-            background: #64748b;
-            margin-top: 10px;
+            background: var(--primary);
+            margin-top: 12px;
         }
 
         .btn-demo:hover {
-            background: #475569;
+            background: var(--primary-dark);
         }
 
         #api-key-container {
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 18px;
+            background: var(--accent-pink);
+            border: 3px solid var(--border-dark);
+            padding: 14px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 4px 4px 0px var(--border-dark);
         }
 
         #result {
             display: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-header-banner {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 14px;
+            border: 3px solid var(--border-dark);
+            margin-bottom: 20px;
         }
 
         .game-title {
             color: var(--primary);
-            font-size: 1.5rem;
-            border-bottom: 2px solid #e0e7ff;
-            padding-bottom: 8px;
+            font-size: 1.8rem;
+            font-weight: 700;
             margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
         }
 
         .badge {
-            display: inline-block;
-            background: #e0e7ff;
-            color: var(--primary);
-            padding: 4px 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent-yellow);
+            color: var(--text-dark);
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-right: 6px;
-            margin-bottom: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 2px solid var(--border-dark);
         }
 
+        .badge-green { background: var(--accent-green); color: white; }
+        .badge-pink { background: var(--accent-pink); }
+
         .game-section {
+            background: #FAF6ED;
+            border: 2px solid var(--border-dark);
+            border-radius: 14px;
+            padding: 16px;
             margin-bottom: 16px;
         }
 
         .game-section h3 {
-            font-size: 1rem;
-            color: #334155;
-            margin-bottom: 6px;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            font-weight: 700;
         }
 
-        .game-section ul {
+        .game-section ol {
             padding-left: 20px;
+            font-weight: 600;
+        }
+
+        .game-section ol li {
+            margin-bottom: 8px;
         }
 
         .loading {
             text-align: center;
             display: none;
-            padding: 20px;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            border: 3px solid var(--border-dark);
+            box-shadow: 6px 6px 0px var(--border-dark);
         }
 
         .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--primary);
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid var(--accent-orange);
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 10px;
+            width: 48px;
+            height: 48px;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
         }
 
         @keyframes spin {
@@ -201,93 +285,98 @@
         }
 
         .safety-box {
-            background: #fef2f2;
-            border-left: 4px solid #ef4444;
-            padding: 10px 14px;
-            border-radius: 0 6px 6px 0;
-            margin-top: 16px;
-            font-size: 0.88rem;
-            color: #991b1b;
+            background: #FFEBEB;
+            border: 3px solid var(--accent-orange);
+            padding: 14px;
+            border-radius: 14px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #990000;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🎲 PlayCraft AI</h1>
-        <p>Generador de juegos físicos y manualidades (100% Sin Pantallas)</p>
+        <div class="logo-box">
+            <h1>🎨 PlayCraft AI</h1>
+        </div>
+        <p>Juegos físicos y manualidades 100% Sin Pantallas</p>
     </header>
 
     <div id="api-key-container">
-        <label for="apiKey">OpenAI API Key (para llamadas reales):</label>
+        <label for="apiKey"><i data-lucide="key"></i> OpenAI API Key (Opcional para pruebas):</label>
         <input type="text" id="apiKey" placeholder="sk-proj-...">
-        <small style="color: #64748b; display: block; margin-top: 4px;">Si no pones Key, puedes presionar "Probar con Respuesta de Prueba".</small>
+        <small style="color: #4A4A4A; display: block; margin-top: 6px; font-weight: 600;">Si no pones Key, presiona el botón azul de "Respuesta de Prueba".</small>
     </div>
 
     <div class="card">
         <form id="gameForm">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
                 <div class="form-group">
-                    <label for="numKids">Nº de Niños:</label>
+                    <label for="numKids"><i data-lucide="users"></i> Nº de Niños:</label>
                     <input type="number" id="numKids" min="1" max="10" value="2" required>
                 </div>
                 <div class="form-group">
-                    <label for="ages">Edades (ej: 4 y 7 años):</label>
+                    <label for="ages"><i data-lucide="baby"></i> Edades:</label>
                     <input type="text" id="ages" value="4 y 6 años" required>
                 </div>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
                 <div class="form-group">
-                    <label for="location">Ubicación:</label>
+                    <label for="location"><i data-lucide="map-pin"></i> Ubicación:</label>
                     <select id="location">
-                        <option value="Interior (Casa / Depto)">Interior (Casa / Depto)</option>
-                        <option value="Exterior (Patio / Parque)">Exterior (Patio / Parque)</option>
-                        <option value="Espacio muy reducido">Espacio muy reducido</option>
+                        <option value="Interior (Casa / Depto)">🏠 Interior (Casa)</option>
+                        <option value="Exterior (Patio / Parque)">🌳 Exterior (Patio/Parque)</option>
+                        <option value="Espacio muy reducido">📦 Espacio reducido</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="energy">Tipo de Dinámica:</label>
+                    <label for="energy"><i data-lucide="zap"></i> Dinámica:</label>
                     <select id="energy">
-                        <option value="Alta energía (Moverse, carreras)">🏃 Alta energía (Moverse)</option>
-                        <option value="Creativo y Manualidades">🎨 Creativo / Manualidad</option>
-                        <option value="Tranquilo y Trabajo en equipo">🧠 Tranquilo / Trabajo en equipo</option>
+                        <option value="Alta energía (Moverse, carreras)">🏃 Moverse / Carreras</option>
+                        <option value="Creativo y Manualidades">🎨 Creativo / Arte</option>
+                        <option value="Tranquilo y Trabajo en equipo">🧠 Lógica / Tranquilo</option>
                     </select>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>Materiales disponibles a mano:</label>
+                <label><i data-lucide="box"></i> Materiales disponibles:</label>
                 <div class="checkbox-group">
                     <label class="checkbox-label"><input type="checkbox" value="Papel y lápices" checked> 📝 Papel/Lápices</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Cajas de cartón"> 📦 Cajas cartón</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Cinta adhesiva" checked> 🩹 Cinta adhesiva</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Cajas de cartón"> 📦 Cartón</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Cinta adhesiva" checked> 🩹 Cinta</label>
                     <label class="checkbox-label"><input type="checkbox" value="Globos"> 🎈 Globos</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Calcetines o Cojines" checked> 🧦 Calcetines/Cojines</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Ninguno (Solo imaginación)"> 🧠 Solo imaginación</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Calcetines o Cojines" checked> 🧦 Calcetines</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Ninguno (Solo imaginación)"> 🧠 Solo Mente</label>
                 </div>
             </div>
 
-            <button type="submit" class="btn">🚀 Generar Juego con IA</button>
-            <button type="button" id="btnMock" class="btn btn-demo">✨ Probar con Respuesta de Prueba (Demo Gratis)</button>
+            <button type="submit" class="btn"><i data-lucide="sparkles"></i> Generar Juego con IA</button>
+            <button type="button" id="btnMock" class="btn btn-demo"><i data-lucide="play-circle"></i> Probar con Respuesta de Prueba</button>
         </form>
     </div>
 
     <div class="loading" id="loading">
         <div class="spinner"></div>
-        <p>Inventando un juego súper divertido y seguro...</p>
+        <p style="font-weight: 700; font-size: 1.1rem; color: var(--primary);">¡Inventando una súper aventura segura!</p>
     </div>
 
     <div class="card" id="result">
-        <!-- El juego se renderiza aquí -->
+        <!-- Ficha de juego -->
     </div>
 
     <script>
+        lucide.createIcons();
+
         document.getElementById('gameForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const apiKey = document.getElementById('apiKey').value.trim();
             if (!apiKey) {
-                alert('Por favor ingresa tu OpenAI API Key o usa el botón de "Respuesta de Prueba".');
+                alert('Ingresa tu OpenAI API Key o usa el botón azul de "Respuesta de Prueba".');
                 return;
             }
             await generateGame(apiKey);
@@ -296,6 +385,13 @@
         document.getElementById('btnMock').addEventListener('click', () => {
             showMockResult();
         });
+
+        // Imágenes de Unsplash según categoría
+        const categoryImages = {
+            'Alta energía (Moverse, carreras)': 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80',
+            'Creativo y Manualidades': 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80',
+            'Tranquilo y Trabajo en equipo': 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=800&q=80'
+        };
 
         async function generateGame(apiKey) {
             const numKids = document.getElementById('numKids').value;
@@ -342,7 +438,7 @@ Materiales disponibles: ${materials}.`;
                     alert('Error de API: ' + data.error.message);
                 } else {
                     const gameData = JSON.parse(data.choices[0].message.content);
-                    renderGame(gameData);
+                    renderGame(gameData, categoryImages[energy]);
                 }
             } catch (err) {
                 alert('Error al conectar con la API: ' + err.message);
@@ -351,65 +447,73 @@ Materiales disponibles: ${materials}.`;
             }
         }
 
-        function renderGame(data) {
+        function renderGame(data, imageUrl) {
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
 
             let pasosHTML = data.pasos_juego.map(paso => `<li>${paso}</li>`).join('');
 
             resultDiv.innerHTML = `
-                <div class="badge">⏱️ ${data.duracion || '20-30 min'}</div>
-                <div class="badge">📦 ${data.materiales_usados || 'Materiales simples'}</div>
+                <img src="${imageUrl || 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80'}" class="game-header-banner" alt="Juego para niños">
+                
                 <h2 class="game-title">🏆 ${data.titulo}</h2>
+
+                <div class="badges-container">
+                    <div class="badge"><i data-lucide="clock" size="16"></i> ${data.duracion || '20 min'}</div>
+                    <div class="badge badge-green"><i data-lucide="package" size="16"></i> ${data.materiales_usados || 'Simples'}</div>
+                    <div class="badge badge-pink"><i data-lucide="shield-check" size="16"></i> 100% Seguro</div>
+                </div>
                 
                 <div class="game-section">
-                    <h3>🛠️ Preparación para el Adulto (${data.preparacion_adulto ? '2 min' : '0 min'}):</h3>
-                    <p>${data.preparacion_adulto || 'Ninguna, listos para empezar.'}</p>
+                    <h3>🛠️ Preparación para el Adulto:</h3>
+                    <p style="font-weight: 600;">${data.preparacion_adulto || '¡Ninguna! Listos para arrancar.'}</p>
                 </div>
 
-                <div class="game-section">
-                    <h3>📢 Explicación para los niños:</h3>
-                    <p><em>"${data.reglas_ninos}"</em></p>
+                <div class="game-section" style="background: #EBF3FF;">
+                    <h3>📢 Instrucciones para los niños:</h3>
+                    <p style="font-style: italic; font-weight: 600; color: var(--primary);">"${data.reglas_ninos}"</p>
                 </div>
 
                 <div class="game-section">
                     <h3>🎮 Pasos del Juego:</h3>
-                    <ol style="padding-left: 20px;">${pasosHTML}</ol>
+                    <ol>${pasosHTML}</ol>
                 </div>
 
                 ${data.variante_dificil ? `
-                <div class="game-section">
-                    <h3>⚡ Modo "Desafío Extra":</h3>
-                    <p>${data.variante_dificil}</p>
+                <div class="game-section" style="background: #FFF9E6;">
+                    <h3>⚡ Modo Desafío Extra:</h3>
+                    <p style="font-weight: 600;">${data.variante_dificil}</p>
                 </div>` : ''}
 
                 <div class="safety-box">
-                    <strong>🛡️ Nota de Seguridad:</strong> ${data.nota_seguridad || 'Asegúrate de dejar el área libre de tropezones.'}
+                    <strong>🛡️ Nota de Seguridad:</strong> ${data.nota_seguridad || 'Asegúrate de despejar la zona de juego de objetos tropezables.'}
                 </div>
             `;
             
+            lucide.createIcons();
             resultDiv.scrollIntoView({ behavior: 'smooth' });
         }
 
         function showMockResult() {
             showLoading(true);
+            const energy = document.getElementById('energy').value;
             setTimeout(() => {
                 showLoading(false);
                 renderGame({
-                    titulo: "El Puente de Lava de Calcetines",
+                    titulo: "El Puente Mágico de Calcetines",
                     duracion: "20 minutos",
-                    materiales_usados: "Calcetines y Cinta adhesiva",
-                    preparacion_adulto: "Pega dos tiras de cinta adhesiva en el suelo para marcar la 'orilla del río'.",
-                    reglas_ninos: "¡El suelo del salón es lava hirviendo! Para cruzarlo solo pueden pisar las 'islas' (calcetines doblados). Si pisan el suelo, vuelven a la orilla.",
+                    materiales_usados: "Calcetines y Cinta",
+                    preparacion_adulto: "Pega dos tiras de cinta en el suelo para delimitar el 'río místico'.",
+                    reglas_ninos: "¡El suelo del salón es un lago de lava hirviendo! Para cruzarlo solo pueden saltar de isla en isla usando los calcetines.",
                     pasos_juego: [
-                        "Cada niño recibe 3 pares de calcetines hechos pelota.",
-                        "Deben ir lanzando un calcetín hacia adelante para crear su propio camino de islas.",
-                        "Tienen que recoger las 'gemas ocultas' (hojas de papel) del otro lado del salón y volver sin caer a la lava."
+                        "Cada jugador recibe 3 pares de calcetines hechos pelota.",
+                        "Deben ir lanzando un calcetín hacia adelante para construir su camino seguro.",
+                        "Tienen que rescatar los 'tesoros' de papel en el otro extremo y volver a la orilla."
                     ],
-                    variante_dificil: "Si son de diferentes edades, el más grande solo puede saltar en un pie.",
-                    nota_seguridad: "Retirar mesas de centro o muebles con esquinas duras antes de empezar a saltar."
-                });
-            }, 800);
+                    variante_dificil: "Si hay niños más grandes, solo pueden avanzar dando saltos en un solo pie.",
+                    nota_seguridad: "Retirar mesas o sillas con esquinas pronunciadas cerca del área de saltos."
+                }, categoryImages[energy]);
+            }, 700);
         }
 
         function showLoading(isLoading) {
