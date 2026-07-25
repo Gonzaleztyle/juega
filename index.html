@@ -11,11 +11,11 @@
             --bg-main: #F4EFEB;            /* Marfil cálido */
             --border-dark: #121212;
             
-            /* Nueva Paleta Vibrante */
-            --color-purple: #7029ED;       /* Púrpura Eléctrico */
-            --color-yellow: #FFD200;       /* Amarillo Sol */
-            --color-cyan: #00E5FF;         /* Cían brillante */
-            --color-coral: #FF4365;        /* Coral / Rojo Vivo */
+            /* Paleta Vibrante de la referencia */
+            --color-purple: #7029ED;       /* Púrpura */
+            --color-yellow: #FFD200;       /* Amarillo */
+            --color-cyan: #00E5FF;         /* Cían */
+            --color-coral: #FF4365;        /* Coral / Rojo */
             --color-mint: #00E676;         /* Verde Menta */
             --text-dark: #121212;
         }
@@ -43,7 +43,7 @@
             margin-bottom: 28px;
         }
 
-        /* Título Principal: Texto Púrpura sobre Fondo Amarillo */
+        /* 1. TITULO PRINCIPAL: Texto Púrpura sobre Fondo Amarillo */
         .title-block-1 {
             display: inline-block;
             background: var(--color-yellow);
@@ -67,7 +67,7 @@
             margin-top: 14px;
         }
 
-        /* Contenedor principal Cían */
+        /* Contenedor principal CÍAN */
         .card {
             background: var(--color-cyan);
             border-radius: 20px;
@@ -87,14 +87,20 @@
             margin-bottom: 20px;
         }
 
+        /* Etiquetas del formulario: Texto Amarillo/Blanco sobre Bloques de Color sobre el Cían */
         label {
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-weight: 800;
+            font-weight: 900;
             margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: var(--text-dark);
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            background: var(--color-purple);
+            color: var(--color-yellow);
+            border: 2px solid var(--border-dark);
+            box-shadow: 2px 2px 0px var(--border-dark);
+            border-radius: 6px;
         }
 
         input[type="text"], input[type="number"], select {
@@ -120,7 +126,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 0.8rem;
             cursor: pointer;
             background: #FFF;
@@ -139,7 +145,7 @@
             accent-color: var(--color-purple);
         }
 
-        /* Botón 1: Texto Púrpura sobre Fondo Menta */
+        /* Botón 1: Texto Púrpura sobre Fondo Verde Menta */
         .btn {
             width: 100%;
             background: var(--color-mint);
@@ -170,7 +176,7 @@
             margin-top: 12px;
         }
 
-        /* Contenedor API Key: Texto Coral sobre Fondo Amarillo */
+        /* API Key: Texto Coral sobre Fondo Amarillo */
         #api-key-container {
             background: var(--color-yellow);
             border: 3px solid var(--border-dark);
@@ -181,8 +187,13 @@
         }
 
         #api-key-container label {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
             color: var(--color-coral);
             font-weight: 900;
+            font-size: 0.9rem;
         }
 
         #result {
@@ -257,7 +268,7 @@
             box-shadow: 3px 3px 0px var(--border-dark);
         }
 
-        /* Combinaciones de color en los subtítulos de resultado */
+        /* Combinaciones exactas de subtítulos */
         .section-adult h3 { background: var(--color-mint); color: var(--color-purple); }
         .section-kids h3 { background: var(--color-purple); color: var(--color-yellow); }
         .section-steps h3 { background: var(--color-coral); color: var(--color-cyan); }
