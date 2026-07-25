@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Juegos Infantiles (Sin Pantallas)</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --border: #e2e8f0;
+            --accent: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        header h1 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: var(--primary);
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: normal;
+            font-size: 0.9rem;
+            cursor: pointer;
+            background: #f1f5f9;
+            padding: 8px 10px;
+            border-radius: 6px;
+        }
+
+        .checkbox-label input {
+            cursor: pointer;
+        }
+
+        .btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+        }
+
+        .btn-demo {
+            background: #64748b;
+            margin-top: 10px;
+        }
+
+        .btn-demo:hover {
+            background: #475569;
+        }
+
+        #api-key-container {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+        }
+
+        #result {
+            display: none;
+        }
+
+        .game-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            border-bottom: 2px solid #e0e7ff;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e0e7ff;
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 6px;
+            margin-bottom: 12px;
+        }
+
+        .game-section {
+            margin-bottom: 16px;
+        }
+
+        .game-section h3 {
+            font-size: 1rem;
+            color: #334155;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .game-section ul {
+            padding-left: 20px;
+        }
+
+        .loading {
+            text-align: center;
+            display: none;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .safety-box {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 10px 14px;
+            border-radius: 0 6px 6px 0;
+            margin-top: 16px;
+            font-size: 0.88rem;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎲 PlayCraft AI</h1>
+        <p>Generador de juegos físicos y manualidades (100% Sin Pantallas)</p>
+    </header>
+
+    <div id="api-key-container">
+        <label for="apiKey">OpenAI API Key (para llamadas reales):</label>
+        <input type="text" id="apiKey" placeholder="sk-proj-...">
+        <small style="color: #64748b; display: block; margin-top: 4px;">Si no pones Key, puedes presionar "Probar con Respuesta de Prueba".</small>
+    </div>
+
+    <div class="card">
+        <form id="gameForm">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div class="form-group">
+                    <label for="numKids">Nº de Niños:</label>
+                    <input type="number" id="numKids" min="1" max="10" value="2" required>
+                </div>
+                <div class="form-group">
+                    <label for="ages">Edades (ej: 4 y 7 años):</label>
+                    <input type="text" id="ages" value="4 y 6 años" required>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                <div class="form-group">
+                    <label for="location">Ubicación:</label>
+                    <select id="location">
+                        <option value="Interior (Casa / Depto)">Interior (Casa / Depto)</option>
+                        <option value="Exterior (Patio / Parque)">Exterior (Patio / Parque)</option>
+                        <option value="Espacio muy reducido">Espacio muy reducido</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="energy">Tipo de Dinámica:</label>
+                    <select id="energy">
+                        <option value="Alta energía (Moverse, carreras)">🏃 Alta energía (Moverse)</option>
+                        <option value="Creativo y Manualidades">🎨 Creativo / Manualidad</option>
+                        <option value="Tranquilo y Trabajo en equipo">🧠 Tranquilo / Trabajo en equipo</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Materiales disponibles a mano:</label>
+                <div class="checkbox-group">
+                    <label class="checkbox-label"><input type="checkbox" value="Papel y lápices" checked> 📝 Papel/Lápices</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Cajas de cartón"> 📦 Cajas cartón</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Cinta adhesiva" checked> 🩹 Cinta adhesiva</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Globos"> 🎈 Globos</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Calcetines o Cojines" checked> 🧦 Calcetines/Cojines</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Ninguno (Solo imaginación)"> 🧠 Solo imaginación</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">🚀 Generar Juego con IA</button>
+            <button type="button" id="btnMock" class="btn btn-demo">✨ Probar con Respuesta de Prueba (Demo Gratis)</button>
+        </form>
+    </div>
+
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Inventando un juego súper divertido y seguro...</p>
+    </div>
+
+    <div class="card" id="result">
+        <!-- El juego se renderiza aquí -->
+    </div>
+
+    <script>
+        document.getElementById('gameForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const apiKey = document.getElementById('apiKey').value.trim();
+            if (!apiKey) {
+                alert('Por favor ingresa tu OpenAI API Key o usa el botón de "Respuesta de Prueba".');
+                return;
+            }
+            await generateGame(apiKey);
+        });
+
+        document.getElementById('btnMock').addEventListener('click', () => {
+            showMockResult();
+        });
+
+        async function generateGame(apiKey) {
+            const numKids = document.getElementById('numKids').value;
+            const ages = document.getElementById('ages').value;
+            const location = document.getElementById('location').value;
+            const energy = document.getElementById('energy').value;
+            
+            const materials = Array.from(document.querySelectorAll('.checkbox-group input:checked'))
+                                   .map(cb => cb.value).join(', ') || 'Ninguno';
+
+            const systemPrompt = `Eres un experto en pedagogía infantil. Tu trabajo es diseñar un juego FÍSICO Y DESCONECTADO.
+REGLAS ABSOLUTAS:
+1. NUNCA sugieras pantallas, apps, videos o búsquedas en internet.
+2. Formato estrictamente JSON con los campos: "titulo", "duracion", "preparacion_adulto", "materiales_usados", "reglas_ninos", "pasos_juego", "variante_dificil", "nota_seguridad".
+3. Tono apto para todo público, divertido y seguro. Cero peligros físicos.`;
+
+            const userPrompt = `Crea un juego para ${numKids} niños de ${ages}.
+Ubicación: ${location}.
+Tipo de juego: ${energy}.
+Materiales disponibles: ${materials}.`;
+
+            showLoading(true);
+
+            try {
+                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: 'gpt-4o-mini',
+                        messages: [
+                            { role: 'system', content: systemPrompt },
+                            { role: 'user', content: userPrompt }
+                        ],
+                        response_format: { type: "json_object" },
+                        temperature: 0.7
+                    })
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    alert('Error de API: ' + data.error.message);
+                } else {
+                    const gameData = JSON.parse(data.choices[0].message.content);
+                    renderGame(gameData);
+                }
+            } catch (err) {
+                alert('Error al conectar con la API: ' + err.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function renderGame(data) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+
+            let pasosHTML = data.pasos_juego.map(paso => `<li>${paso}</li>`).join('');
+
+            resultDiv.innerHTML = `
+                <div class="badge">⏱️ ${data.duracion || '20-30 min'}</div>
+                <div class="badge">📦 ${data.materiales_usados || 'Materiales simples'}</div>
+                <h2 class="game-title">🏆 ${data.titulo}</h2>
+                
+                <div class="game-section">
+                    <h3>🛠️ Preparación para el Adulto (${data.preparacion_adulto ? '2 min' : '0 min'}):</h3>
+                    <p>${data.preparacion_adulto || 'Ninguna, listos para empezar.'}</p>
+                </div>
+
+                <div class="game-section">
+                    <h3>📢 Explicación para los niños:</h3>
+                    <p><em>"${data.reglas_ninos}"</em></p>
+                </div>
+
+                <div class="game-section">
+                    <h3>🎮 Pasos del Juego:</h3>
+                    <ol style="padding-left: 20px;">${pasosHTML}</ol>
+                </div>
+
+                ${data.variante_dificil ? `
+                <div class="game-section">
+                    <h3>⚡ Modo "Desafío Extra":</h3>
+                    <p>${data.variante_dificil}</p>
+                </div>` : ''}
+
+                <div class="safety-box">
+                    <strong>🛡️ Nota de Seguridad:</strong> ${data.nota_seguridad || 'Asegúrate de dejar el área libre de tropezones.'}
+                </div>
+            `;
+            
+            resultDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showMockResult() {
+            showLoading(true);
+            setTimeout(() => {
+                showLoading(false);
+                renderGame({
+                    titulo: "El Puente de Lava de Calcetines",
+                    duracion: "20 minutos",
+                    materiales_usados: "Calcetines y Cinta adhesiva",
+                    preparacion_adulto: "Pega dos tiras de cinta adhesiva en el suelo para marcar la 'orilla del río'.",
+                    reglas_ninos: "¡El suelo del salón es lava hirviendo! Para cruzarlo solo pueden pisar las 'islas' (calcetines doblados). Si pisan el suelo, vuelven a la orilla.",
+                    pasos_juego: [
+                        "Cada niño recibe 3 pares de calcetines hechos pelota.",
+                        "Deben ir lanzando un calcetín hacia adelante para crear su propio camino de islas.",
+                        "Tienen que recoger las 'gemas ocultas' (hojas de papel) del otro lado del salón y volver sin caer a la lava."
+                    ],
+                    variante_dificil: "Si son de diferentes edades, el más grande solo puede saltar en un pie.",
+                    nota_seguridad: "Retirar mesas de centro o muebles con esquinas duras antes de empezar a saltar."
+                });
+            }, 800);
+        }
+
+        function showLoading(isLoading) {
+            document.getElementById('loading').style.display = isLoading ? 'block' : 'none';
+            if (isLoading) document.getElementById('result').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
