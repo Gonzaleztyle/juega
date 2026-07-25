@@ -8,16 +8,16 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --bg-main: #FAF6ED;            /* Crema cálido */
-            --card-bg: #FFD000;           /* AMARILLO BRILLANTE */
-            --primary-blue: #0A52E2;       /* Azul eléctrico */
-            --primary-dark-blue: #0639A0;
-            --accent-orange: #FF4500;      /* Naranja neón */
-            --accent-green: #008B4B;       /* Verde */
-            --accent-yellow: #FFD000;      /* Amarillo */
-            --accent-pink: #D81B60;        /* Rosado/Magenta */
-            --text-dark: #1A1A1A;         /* NEGRO */
-            --border-dark: #1A1A1A;
+            --bg-main: #F4EFEB;            /* Marfil cálido */
+            --border-dark: #121212;
+            
+            /* Nueva Paleta Vibrante */
+            --color-purple: #7029ED;       /* Púrpura Eléctrico */
+            --color-yellow: #FFD200;       /* Amarillo Sol */
+            --color-cyan: #00E5FF;         /* Cían brillante */
+            --color-coral: #FF4365;        /* Coral / Rojo Vivo */
+            --color-mint: #00E676;         /* Verde Menta */
+            --text-dark: #121212;
         }
 
         * {
@@ -43,32 +43,33 @@
             margin-bottom: 28px;
         }
 
-        /* Bloque principal - Título en Azul Eléctrico */
+        /* Título Principal: Texto Púrpura sobre Fondo Amarillo */
         .title-block-1 {
             display: inline-block;
-            background: #FFFFFF;
-            padding: 10px 20px;
+            background: var(--color-yellow);
+            padding: 12px 24px;
             border: 3px solid var(--border-dark);
-            box-shadow: 4px 4px 0px var(--border-dark);
-            transform: rotate(-1deg);
+            box-shadow: 5px 5px 0px var(--border-dark);
+            transform: rotate(-1.5deg);
         }
 
         .title-block-1 h1 {
             font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary-blue); /* Texto Azul */
+            font-weight: 900;
+            color: var(--color-purple);
+            letter-spacing: 1px;
         }
 
         header p {
-            color: var(--accent-orange); /* Subtítulo Naranja */
+            color: var(--color-coral);
             font-size: 0.95rem;
-            font-weight: 700;
-            margin-top: 12px;
+            font-weight: 800;
+            margin-top: 14px;
         }
 
-        /* Contenedor principal AMARILLO con textos en NEGRO */
+        /* Contenedor principal Cían */
         .card {
-            background: var(--card-bg);
+            background: var(--color-cyan);
             border-radius: 20px;
             padding: 24px;
             border: 3px solid var(--border-dark);
@@ -90,7 +91,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 8px;
             font-size: 0.9rem;
             color: var(--text-dark);
@@ -106,10 +107,6 @@
             outline: none;
             background: #FFF;
             color: var(--text-dark);
-        }
-
-        input:focus, select:focus {
-            background: #F0F6FF;
         }
 
         .checkbox-group {
@@ -135,26 +132,22 @@
             transition: all 0.15s;
         }
 
-        .checkbox-label:hover {
-            transform: translateY(-2deg);
-            background: #FFE4EC;
-        }
-
         .checkbox-label input {
             cursor: pointer;
             width: 18px;
             height: 18px;
-            accent-color: var(--primary-blue);
+            accent-color: var(--color-purple);
         }
 
+        /* Botón 1: Texto Púrpura sobre Fondo Menta */
         .btn {
             width: 100%;
-            background: var(--accent-orange);
-            color: #FFFFFF;
+            background: var(--color-mint);
+            color: var(--color-purple);
             border: 3px solid var(--border-dark);
             padding: 14px;
             font-size: 1rem;
-            font-weight: 700;
+            font-weight: 900;
             border-radius: 14px;
             cursor: pointer;
             box-shadow: 4px 4px 0px var(--border-dark);
@@ -168,21 +161,18 @@
         .btn:hover {
             transform: translateY(-2deg);
             box-shadow: 6px 6px 0px var(--border-dark);
-            background: #E03E00;
         }
 
+        /* Botón 2: Texto Amarillo sobre Fondo Púrpura */
         .btn-demo {
-            background: var(--primary-blue);
-            color: #FFFFFF;
+            background: var(--color-purple);
+            color: var(--color-yellow);
             margin-top: 12px;
         }
 
-        .btn-demo:hover {
-            background: var(--primary-dark-blue);
-        }
-
+        /* Contenedor API Key: Texto Coral sobre Fondo Amarillo */
         #api-key-container {
-            background: #FFE4EC;
+            background: var(--color-yellow);
             border: 3px solid var(--border-dark);
             padding: 14px;
             border-radius: 16px;
@@ -191,7 +181,8 @@
         }
 
         #api-key-container label {
-            color: var(--accent-pink); /* Texto Rosado */
+            color: var(--color-coral);
+            font-weight: 900;
         }
 
         #result {
@@ -209,16 +200,16 @@
             margin-bottom: 20px;
         }
 
-        /* Título del Juego: Texto Naranja sobre Fondo Amarillo */
+        /* Título del Juego: Texto Cían sobre Fondo Coral */
         .game-title {
             display: inline-block;
-            background: var(--accent-yellow);
-            color: var(--accent-orange);
+            background: var(--color-coral);
+            color: var(--color-cyan);
             padding: 10px 16px;
             border: 3px solid var(--border-dark);
             box-shadow: 4px 4px 0px var(--border-dark);
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 900;
             margin-bottom: 16px;
             line-height: 1.2;
         }
@@ -234,17 +225,16 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: #FFFFFF;
-            color: var(--primary-blue);
             padding: 6px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
-            font-weight: 700;
+            font-weight: 800;
             border: 2px solid var(--border-dark);
         }
 
-        .badge-green { color: var(--accent-green); }
-        .badge-pink { color: var(--accent-pink); }
+        .badge-1 { background: var(--color-yellow); color: var(--color-purple); }
+        .badge-2 { background: var(--color-mint); color: var(--text-dark); }
+        .badge-3 { background: var(--color-cyan); color: var(--color-purple); }
 
         .game-section {
             background: #FAF6ED;
@@ -255,28 +245,26 @@
             color: var(--text-dark);
         }
 
-        /* Subtítulos con color de texto específico sobre bloques claros/blancos */
         .game-section h3 {
             font-size: 0.95rem;
             margin-bottom: 12px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            font-weight: 700;
+            font-weight: 900;
             padding: 6px 12px;
-            background: #FFFFFF;
             border: 2px solid var(--border-dark);
             box-shadow: 3px 3px 0px var(--border-dark);
         }
 
-        /* Color de los textos por sección */
-        .section-adult h3 { color: var(--accent-green); }   /* Texto Verde */
-        .section-kids h3 { color: var(--primary-blue); }    /* Texto Azul */
-        .section-steps h3 { color: var(--accent-orange); }  /* Texto Naranja */
-        .section-extra h3 { color: var(--accent-pink); }    /* Texto Rosado */
+        /* Combinaciones de color en los subtítulos de resultado */
+        .section-adult h3 { background: var(--color-mint); color: var(--color-purple); }
+        .section-kids h3 { background: var(--color-purple); color: var(--color-yellow); }
+        .section-steps h3 { background: var(--color-coral); color: var(--color-cyan); }
+        .section-extra h3 { background: var(--color-yellow); color: var(--color-coral); }
 
         .game-section p, .game-section ol {
-            font-weight: 400;
+            font-weight: 500;
         }
 
         .game-section ol {
@@ -299,7 +287,7 @@
 
         .spinner {
             border: 6px solid #f3f3f3;
-            border-top: 6px solid var(--accent-orange);
+            border-top: 6px solid var(--color-purple);
             border-radius: 50%;
             width: 48px;
             height: 48px;
@@ -314,7 +302,7 @@
 
         .safety-box {
             background: #FFEBEB;
-            border: 3px solid var(--accent-orange);
+            border: 3px solid var(--color-coral);
             padding: 14px;
             border-radius: 14px;
             margin-top: 20px;
@@ -336,7 +324,7 @@
     <div id="api-key-container">
         <label for="apiKey"><i data-lucide="key"></i> OPENAI API KEY (OPCIONAL PARA PRUEBAS):</label>
         <input type="text" id="apiKey" placeholder="SK-PROJ-...">
-        <small style="color: var(--text-dark); display: block; margin-top: 6px; font-weight: 700;">SI NO TIENES KEY, PRESIONA EL BOTON AZUL DE PROBAR CON RESPUESTA DE PRUEBA.</small>
+        <small style="color: var(--text-dark); display: block; margin-top: 6px; font-weight: 800;">SI NO TIENES KEY, PRESIONA EL BOTON AZUL DE PROBAR CON RESPUESTA DE PRUEBA.</small>
     </div>
 
     <div class="card">
@@ -390,7 +378,7 @@
 
     <div class="loading" id="loading">
         <div class="spinner"></div>
-        <p style="font-weight: 700; font-size: 1.1rem; color: var(--primary-blue);">INVENTANDO UNA SUPER AVENTURA SEGURA...</p>
+        <p style="font-weight: 800; font-size: 1.1rem; color: var(--color-purple);">INVENTANDO UNA SUPER AVENTURA SEGURA...</p>
     </div>
 
     <div class="card card-result" id="result">
@@ -486,9 +474,9 @@ Materiales disponibles: ${materials}.`;
                 <h2 class="game-title">${data.titulo}</h2>
 
                 <div class="badges-container">
-                    <div class="badge"><i data-lucide="clock" size="16"></i> ${data.duracion || '20 MIN'}</div>
-                    <div class="badge badge-green"><i data-lucide="package" size="16"></i> ${data.materiales_usados || 'SIMPLES'}</div>
-                    <div class="badge badge-pink"><i data-lucide="shield-check" size="16"></i> 100% SEGURO</div>
+                    <div class="badge badge-1"><i data-lucide="clock" size="16"></i> ${data.duracion || '20 MIN'}</div>
+                    <div class="badge badge-2"><i data-lucide="package" size="16"></i> ${data.materiales_usados || 'SIMPLES'}</div>
+                    <div class="badge badge-3"><i data-lucide="shield-check" size="16"></i> 100% SEGURO</div>
                 </div>
                 
                 <div class="game-section section-adult">
@@ -498,7 +486,7 @@ Materiales disponibles: ${materials}.`;
 
                 <div class="game-section section-kids" style="background: #EBF3FF;">
                     <h3><i data-lucide="mega-phone" size="18"></i> INSTRUCCIONES PARA LOS NINOS:</h3>
-                    <p style="font-weight: 700; color: var(--primary-blue);">"${data.reglas_ninos}"</p>
+                    <p style="font-weight: 800; color: var(--color-purple);">"${data.reglas_ninos}"</p>
                 </div>
 
                 <div class="game-section section-steps">
@@ -507,7 +495,7 @@ Materiales disponibles: ${materials}.`;
                 </div>
 
                 ${data.variante_dificil ? `
-                <div class="game-section section-extra" style="background: #FFF9E6;">
+                <div class="game-section section-extra" style="background: #FFF0F5;">
                     <h3><i data-lucide="zap" size="18"></i> MODO DESAFIO EXTRA:</h3>
                     <p>${data.variante_dificil}</p>
                 </div>` : ''}
