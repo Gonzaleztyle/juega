@@ -9,14 +9,14 @@
     <style>
         :root {
             --bg-main: #FAF6ED;         /* Crema cálido */
-            --card-bg: #008B4B;        /* Verde principal para el contenedor */
+            --card-bg: #FFD000;        /* AMARILLO BRILLANTE */
             --primary: #0A52E2;        /* Azul eléctrico */
             --primary-dark: #0639A0;
             --accent-orange: #FF4500;   /* Naranja neón */
             --accent-green: #008B4B;    /* Verde */
             --accent-yellow: #FFD000;   /* Amarillo brillante */
             --accent-pink: #F7A8B8;     /* Rosado dulce */
-            --text-dark: #1A1A1A;
+            --text-dark: #1A1A1A;      /* NEGRO */
             --border-dark: #1A1A1A;
         }
 
@@ -43,30 +43,27 @@
             margin-bottom: 28px;
         }
 
-        .logo-box {
+        /* Bloques de título estilo la imagen enviada */
+        .title-block-1 {
             display: inline-block;
-            background: var(--accent-yellow);
+            background: var(--primary);
+            color: #FFFFFF;
             padding: 8px 16px;
-            border-radius: 16px;
             border: 3px solid var(--border-dark);
             box-shadow: 4px 4px 0px var(--border-dark);
-            margin-bottom: 12px;
-            transform: rotate(-2deg);
-        }
-
-        header h1 {
-            color: var(--primary);
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 700;
+            transform: rotate(-1deg);
         }
 
         header p {
-            color: #4A4A4A;
+            color: var(--text-dark);
             font-size: 0.95rem;
             font-weight: 700;
+            margin-top: 12px;
         }
 
-        /* Contenedor principal verde */
+        /* Contenedor principal AMARILLO con textos NEGROS */
         .card {
             background: var(--card-bg);
             border-radius: 20px;
@@ -74,7 +71,7 @@
             border: 3px solid var(--border-dark);
             box-shadow: 6px 6px 0px var(--border-dark);
             margin-bottom: 28px;
-            color: #FFFFFF;
+            color: var(--text-dark);
         }
 
         .card-result {
@@ -93,7 +90,7 @@
             font-weight: 700;
             margin-bottom: 8px;
             font-size: 0.9rem;
-            color: #FFFFFF;
+            color: var(--text-dark);
         }
 
         input[type="text"], input[type="number"], select {
@@ -214,8 +211,13 @@
         }
 
         .game-title {
-            color: var(--primary);
-            font-size: 1.8rem;
+            display: inline-block;
+            background: var(--accent-orange);
+            color: #FFFFFF;
+            padding: 10px 16px;
+            border: 3px solid var(--border-dark);
+            box-shadow: 4px 4px 0px var(--border-dark);
+            font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 16px;
             line-height: 1.2;
@@ -242,7 +244,7 @@
         }
 
         .badge-green { background: var(--accent-green); color: white; }
-        .badge-pink { background: var(--accent-pink); }
+        .badge-pink { background: var(--accent-pink); color: var(--text-dark); }
 
         .game-section {
             background: #FAF6ED;
@@ -253,23 +255,30 @@
             color: var(--text-dark);
         }
 
+        /* Bloques multicolores para subtítulos */
         .game-section h3 {
             font-size: 0.95rem;
-            color: var(--text-dark);
-            margin-bottom: 8px;
-            display: flex;
+            margin-bottom: 12px;
+            display: inline-flex;
             align-items: center;
             gap: 8px;
             font-weight: 700;
+            padding: 6px 12px;
+            border: 2px solid var(--border-dark);
+            box-shadow: 3px 3px 0px var(--border-dark);
         }
 
-        .game-section p {
+        .section-adult h3 { background: var(--accent-green); color: #FFFFFF; }
+        .section-kids h3 { background: var(--primary); color: #FFFFFF; }
+        .section-steps h3 { background: var(--accent-yellow); color: var(--text-dark); }
+        .section-extra h3 { background: var(--accent-orange); color: #FFFFFF; }
+
+        .game-section p, .game-section ol {
             font-weight: 400;
         }
 
         .game-section ol {
             padding-left: 20px;
-            font-weight: 400;
         }
 
         .game-section ol li {
@@ -316,7 +325,7 @@
 <body>
 
     <header>
-        <div class="logo-box">
+        <div class="title-block-1">
             <h1>PLAYCRAFT AI</h1>
         </div>
         <p>JUEGOS FISICOS Y MANUALIDADES 100% SIN PANTALLAS</p>
@@ -325,7 +334,7 @@
     <div id="api-key-container">
         <label for="apiKey"><i data-lucide="key"></i> OPENAI API KEY (OPCIONAL PARA PRUEBAS):</label>
         <input type="text" id="apiKey" placeholder="SK-PROJ-...">
-        <small style="color: #4A4A4A; display: block; margin-top: 6px; font-weight: 700;">SI NO TIENES KEY, PRESIONA EL BOTON AZUL DE PROBAR CON RESPUESTA DE PRUEBA.</small>
+        <small style="color: #1A1A1A; display: block; margin-top: 6px; font-weight: 700;">SI NO TIENES KEY, PRESIONA EL BOTON AZUL DE PROBAR CON RESPUESTA DE PRUEBA.</small>
     </div>
 
     <div class="card">
@@ -480,23 +489,23 @@ Materiales disponibles: ${materials}.`;
                     <div class="badge badge-pink"><i data-lucide="shield-check" size="16"></i> 100% SEGURO</div>
                 </div>
                 
-                <div class="game-section">
+                <div class="game-section section-adult">
                     <h3><i data-lucide="wrench" size="18"></i> PREPARACION PARA EL ADULTO:</h3>
                     <p>${data.preparacion_adulto || 'NINGUNA. LISTOS PARA ARRANCAR.'}</p>
                 </div>
 
-                <div class="game-section" style="background: #EBF3FF;">
+                <div class="game-section section-kids" style="background: #EBF3FF;">
                     <h3><i data-lucide="mega-phone" size="18"></i> INSTRUCCIONES PARA LOS NINOS:</h3>
                     <p style="font-weight: 700; color: var(--primary);">"${data.reglas_ninos}"</p>
                 </div>
 
-                <div class="game-section">
+                <div class="game-section section-steps">
                     <h3><i data-lucide="gamepad-2" size="18"></i> PASOS DEL JUEGO:</h3>
                     <ol>${pasosHTML}</ol>
                 </div>
 
                 ${data.variante_dificil ? `
-                <div class="game-section" style="background: #FFF9E6;">
+                <div class="game-section section-extra" style="background: #FFF9E6;">
                     <h3><i data-lucide="zap" size="18"></i> MODO DESAFIO EXTRA:</h3>
                     <p>${data.variante_dificil}</p>
                 </div>` : ''}
