@@ -1,24 +1,28 @@
+No, ese fragmento solo contenía las **variables CSS de tus colores**.
+
+Para que no tengas que armar nada manualmente, aquí tienes el archivo **`index.html` completo y listo para guardar**. Ya tiene integrados tus colores exactos, tus 5 combinaciones estrictas, el menú expandido de materiales y la conexión con **Groq**:
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PLAYCRAFT AI - JUEGOS SIN PANTALLAS</title>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
             --bg-main: #F4EFEB;
             --border-dark: #121212;
             
-            /* Paleta Estricta Solicitada */
-            --color-blue: #0055FF;     /* Azul puro */
-            --color-yellow: #FFD200;   /* Amarillo */
-            --color-red: #FF3333;      /* Rojo */
-            --color-pink: #FF66B2;     /* Rosado */
-            --color-green: #00E676;    /* Verde */
-            --color-white: #FFFFFF;    /* Blanco */
-            --color-black: #121212;    /* Negro */
+            /* Paleta extraída de tu documento */
+            --color-blue: #2948B5;      /* Tu azul */
+            --color-pink: #E2A5D4;      /* Tu rosado */
+            --color-yellow: #EFC42D;    /* Tu amarillo */
+            --color-red: #D73B26;       /* Tu rojo/coral */
+            --color-green: #447865;     /* Tu verde */
+            --color-white: #FFFFFF;     /* Blanco */
+            --color-black: #121212;     /* Negro */
         }
 
         * {
@@ -36,7 +40,6 @@
             padding: 24px 16px;
             max-width: 800px;
             margin: 0 auto;
-            font-weight: 400;
         }
 
         header {
@@ -44,7 +47,7 @@
             margin-bottom: 28px;
         }
 
-        /* COMBINACIÓN: AZUL SOBRE AMARILLO */
+        /* AZUL SOBRE AMARILLO */
         .title-block-1 {
             display: inline-block;
             background: var(--color-yellow);
@@ -59,10 +62,9 @@
             font-size: 2.2rem;
             font-weight: 900;
             color: var(--color-blue);
-            letter-spacing: 1px;
         }
 
-        /* COMBINACIÓN: AZUL SOBRE ROJO */
+        /* AZUL SOBRE ROJO */
         header p {
             display: inline-block;
             background: var(--color-red);
@@ -74,7 +76,7 @@
             border: 2px solid var(--border-dark);
         }
 
-        /* COMBINACIÓN: ROSADO SOBRE AZUL */
+        /* ROSADO SOBRE AZUL */
         .card {
             background: var(--color-blue);
             color: var(--color-pink);
@@ -85,17 +87,11 @@
             margin-bottom: 28px;
         }
 
-        /* NEGRO SOBRE BLANCO */
-        .card-result {
-            background: var(--color-white);
-            color: var(--color-black);
-        }
-
         .form-group {
             margin-bottom: 20px;
         }
 
-        /* COMBINACIÓN: AZUL SOBRE AMARILLO */
+        /* AZUL SOBRE AMARILLO */
         label {
             display: inline-flex;
             align-items: center;
@@ -145,7 +141,6 @@
             border-radius: 12px;
             border: 2px solid var(--border-dark);
             box-shadow: 2px 2px 0px var(--border-dark);
-            transition: all 0.15s;
         }
 
         .checkbox-label input {
@@ -155,7 +150,7 @@
             accent-color: var(--color-blue);
         }
 
-        /* BOTÓN 1: VERDE SOBRE ROSADO */
+        /* VERDE SOBRE ROSADO */
         .btn {
             width: 100%;
             background: var(--color-pink);
@@ -167,26 +162,20 @@
             border-radius: 14px;
             cursor: pointer;
             box-shadow: 4px 4px 0px var(--border-dark);
-            transition: all 0.15s;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
         }
 
-        .btn:hover {
-            transform: translateY(-2deg);
-            box-shadow: 6px 6px 0px var(--border-dark);
-        }
-
-        /* BOTÓN 2: AZUL SOBRE AMARILLO */
+        /* AZUL SOBRE AMARILLO */
         .btn-demo {
             background: var(--color-yellow);
             color: var(--color-blue);
             margin-top: 12px;
         }
 
-        /* COMBINACIÓN: ROSADO SOBRE AZUL */
+        /* ROSADO SOBRE AZUL */
         #api-key-container {
             background: var(--color-blue);
             color: var(--color-pink);
@@ -214,10 +203,15 @@
             font-weight: 800;
         }
 
-        #result {
+        /* RESULTADOS: NEGRO SOBRE BLANCO */
+        .card-result {
+            background: var(--color-white);
+            color: var(--color-black);
             display: none;
-            position: relative;
-            overflow: hidden;
+            border-radius: 20px;
+            padding: 24px;
+            border: 3px solid var(--border-dark);
+            box-shadow: 6px 6px 0px var(--border-dark);
         }
 
         .game-header-banner {
@@ -229,7 +223,7 @@
             margin-bottom: 20px;
         }
 
-        /* COMBINACIÓN: AZUL SOBRE ROJO */
+        /* AZUL SOBRE ROJO */
         .game-title {
             display: inline-block;
             background: var(--color-red);
@@ -240,7 +234,6 @@
             font-size: 1.5rem;
             font-weight: 900;
             margin-bottom: 16px;
-            line-height: 1.2;
         }
 
         .badges-container {
@@ -265,7 +258,6 @@
         .badge-2 { background: var(--color-pink); color: var(--color-green); }
         .badge-3 { background: var(--color-red); color: var(--color-blue); }
 
-        /* SECCIONES EN RESULTADO: NEGRO SOBRE BLANCO */
         .game-section {
             background: var(--color-white);
             border: 2px solid var(--border-dark);
@@ -287,7 +279,6 @@
             box-shadow: 3px 3px 0px var(--border-dark);
         }
 
-        /* SUBTÍTULOS CON LAS COMBINACIONES SOLICITADAS */
         .section-adult h3 { background: var(--color-yellow); color: var(--color-blue); }
         .section-kids h3 { background: var(--color-pink); color: var(--color-green); }
         .section-steps h3 { background: var(--color-red); color: var(--color-blue); }
@@ -298,15 +289,9 @@
             color: var(--color-black);
         }
 
-        .game-section ol {
-            padding-left: 20px;
-        }
+        .game-section ol { padding-left: 20px; }
+        .game-section ol li { margin-bottom: 8px; }
 
-        .game-section ol li {
-            margin-bottom: 8px;
-        }
-
-        /* NEGRO SOBRE BLANCO */
         .loading {
             text-align: center;
             display: none;
@@ -328,12 +313,9 @@
             margin: 0 auto 16px;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* SEGURIDAD: AZUL SOBRE ROJO */
+        /* AZUL SOBRE ROJO */
         .safety-box {
             background: var(--color-red);
             color: var(--color-blue);
@@ -357,9 +339,9 @@
     </header>
 
     <div id="api-key-container">
-        <label for="apiKey"><i data-lucide="key"></i> OPENAI API KEY (OPCIONAL):</label>
-        <input type="text" id="apiKey" placeholder="SK-PROJ-...">
-        <small>SI NO TIENES KEY, PRESIONA EL BOTON DE RESPUESTA DE PRUEBA.</small>
+        <label for="apiKey"><i data-lucide="key"></i> GROQ API KEY (GRATIS):</label>
+        <input type="text" id="apiKey" placeholder="gsk_...">
+        <small>PEGA TU API KEY DE GROQ O PRUEBA CON EL BOTON DE MUESTRA.</small>
     </div>
 
     <div class="card">
@@ -406,7 +388,7 @@
                     <label class="checkbox-label"><input type="checkbox" value="Cinta adhesiva" checked> CINTA ADHESIVA</label>
                     <label class="checkbox-label"><input type="checkbox" value="Globos"> GLOBOS</label>
                     <label class="checkbox-label"><input type="checkbox" value="Calcetines o Cojines" checked> CALCETINES / COJINES</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Vasos de plástico / cartón"> VASOS PLASTICOS</label>
+                    <label class="checkbox-label"><input type="checkbox" value="Vasos de plástico"> VASOS PLASTICOS</label>
                     <label class="checkbox-label"><input type="checkbox" value="Lana / Hilo"> LANA / HILO</label>
                     <label class="checkbox-label"><input type="checkbox" value="Linterna"> LINTERNA</label>
                     <label class="checkbox-label"><input type="checkbox" value="Platos de papel"> PLATOS DE PAPEL</label>
@@ -415,7 +397,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn"><i data-lucide="sparkles"></i> GENERAR JUEGO CON IA</button>
+            <button type="submit" class="btn"><i data-lucide="sparkles"></i> GENERAR JUEGO CON GROQ</button>
             <button type="button" id="btnMock" class="btn btn-demo"><i data-lucide="play-circle"></i> PROBAR CON RESPUESTA DE PRUEBA</button>
         </form>
     </div>
@@ -425,9 +407,7 @@
         <p style="font-weight: 800; font-size: 1.1rem; color: var(--color-black);">INVENTANDO UNA SUPER AVENTURA SEGURA...</p>
     </div>
 
-    <div class="card card-result" id="result">
-        <!-- Ficha de juego -->
-    </div>
+    <div class="card-result" id="result"></div>
 
     <script>
         lucide.createIcons();
@@ -436,15 +416,13 @@
             e.preventDefault();
             const apiKey = document.getElementById('apiKey').value.trim();
             if (!apiKey) {
-                alert('INGRESA TU OPENAI API KEY O USA EL BOTON DE RESPUESTA DE PRUEBA.');
+                alert('PEGA TU API KEY DE GROQ O USA EL BOTON AMARILLO DE DEMO.');
                 return;
             }
             await generateGame(apiKey);
         });
 
-        document.getElementById('btnMock').addEventListener('click', () => {
-            showMockResult();
-        });
+        document.getElementById('btnMock').addEventListener('click', showMockResult);
 
         const categoryImages = {
             'Alta energía (Moverse, carreras)': 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80',
@@ -469,22 +447,19 @@ REGLAS ABSOLUTAS:
 2. Formato strictly JSON con los campos: "titulo", "duracion", "preparacion_adulto", "materiales_usados", "reglas_ninos", "pasos_juego", "variante_dificil", "nota_seguridad".
 3. Tono apto para todo público, divertido y seguro. Cero peligros físicos.`;
 
-            const userPrompt = `Crea un juego para ${numKids} niños de ${ages}.
-Ubicación: ${location}.
-Tipo de juego: ${energy}.
-Materiales disponibles: ${materials}.`;
+            const userPrompt = `Crea un juego para ${numKids} niños de ${ages}. Ubicación: ${location}. Tipo: ${energy}. Materiales: ${materials}.`;
 
             showLoading(true);
 
             try {
-                const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${apiKey}`
                     },
                     body: JSON.stringify({
-                        model: 'gpt-4o-mini',
+                        model: 'llama-3.3-70b-versatile',
                         messages: [
                             { role: 'system', content: systemPrompt },
                             { role: 'user', content: userPrompt }
@@ -496,13 +471,13 @@ Materiales disponibles: ${materials}.`;
 
                 const data = await response.json();
                 if (data.error) {
-                    alert('ERROR DE API: ' + data.error.message);
+                    alert('ERROR DE GROQ: ' + data.error.message);
                 } else {
                     const gameData = JSON.parse(data.choices[0].message.content);
                     renderGame(gameData, categoryImages[energy]);
                 }
             } catch (err) {
-                alert('ERROR AL CONECTAR CON LA API: ' + err.message);
+                alert('ERROR DE CONEXION: ' + err.message);
             } finally {
                 showLoading(false);
             }
@@ -515,42 +490,34 @@ Materiales disponibles: ${materials}.`;
             let pasosHTML = data.pasos_juego.map(paso => `<li>${paso}</li>`).join('');
 
             resultDiv.innerHTML = `
-                <img src="${imageUrl || 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80'}" class="game-header-banner" alt="JUEGO PARA NINOS">
-                
+                <img src="${imageUrl || 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80'}" class="game-header-banner">
                 <h2 class="game-title">${data.titulo}</h2>
-
                 <div class="badges-container">
                     <div class="badge badge-1"><i data-lucide="clock" size="16"></i> ${data.duracion || '20 MIN'}</div>
                     <div class="badge badge-2"><i data-lucide="package" size="16"></i> ${data.materiales_usados || 'SIMPLES'}</div>
                     <div class="badge badge-3"><i data-lucide="shield-check" size="16"></i> 100% SEGURO</div>
                 </div>
-                
                 <div class="game-section section-adult">
                     <h3><i data-lucide="wrench" size="18"></i> PREPARACION PARA EL ADULTO:</h3>
                     <p>${data.preparacion_adulto || 'NINGUNA. LISTOS PARA ARRANCAR.'}</p>
                 </div>
-
                 <div class="game-section section-kids">
                     <h3><i data-lucide="mega-phone" size="18"></i> INSTRUCCIONES PARA LOS NINOS:</h3>
                     <p style="font-weight: 800;">"${data.reglas_ninos}"</p>
                 </div>
-
                 <div class="game-section section-steps">
                     <h3><i data-lucide="gamepad-2" size="18"></i> PASOS DEL JUEGO:</h3>
                     <ol>${pasosHTML}</ol>
                 </div>
-
                 ${data.variante_dificil ? `
                 <div class="game-section section-extra">
                     <h3><i data-lucide="zap" size="18"></i> MODO DESAFIO EXTRA:</h3>
                     <p>${data.variante_dificil}</p>
                 </div>` : ''}
-
                 <div class="safety-box">
-                    <strong>NOTA DE SEGURIDAD:</strong> ${data.nota_seguridad || 'ASEGURATE DE DESPEJAR LA ZONA DE JUEGO DE OBJETOS TROPEZABLES.'}
+                    <strong>NOTA DE SEGURIDAD:</strong> ${data.nota_seguridad || 'ASEGURATE DE DESPEJAR LA ZONA DE JUEGO.'}
                 </div>
             `;
-            
             lucide.createIcons();
             resultDiv.scrollIntoView({ behavior: 'smooth' });
         }
@@ -565,13 +532,13 @@ Materiales disponibles: ${materials}.`;
                     duracion: "20 MINUTOS",
                     materiales_usados: "CALCETINES Y CINTA",
                     preparacion_adulto: "PEGA DOS TIRAS DE CINTA EN EL SUELO PARA DELIMITAR EL RIO MISTICO.",
-                    reglas_ninos: "EL SUELO DEL SALON ES UN LAGO DE LAVA HIRVIENDO. PARA CRUZARLO SOLO PUEDEN SALTAR DE ISLA EN ISLA USANDO LOS CALCETINES.",
+                    reglas_ninos: "EL SUELO DEL SALON ES UN LAGO DE LAVA HIRVIENDO. SALTEN DE ISLA EN ISLA USANDO LOS CALCETINES.",
                     pasos_juego: [
                         "CADA JUGADOR RECIBE 3 PARES DE CALCETINES HECHOS PELOTA.",
-                        "DEBEN IR LANZANDO UN CALCETIN HACIA ADELANTE PARA CONSTRUIR SU CAMINO SEGURO.",
-                        "TIENEN QUE RESCATAR LOS TESOROS DE PAPEL EN EL OTRO EXTREMO Y VOLVER A LA ORILLA."
+                        "DEBEN IR LANZANDO UN CALCETIN HACIA ADELANTE PARA CONSTRUIR SU CAMINO.",
+                        "TIENEN QUE RESCATAR LOS TESOROS Y VOLVER A LA ORILLA."
                     ],
-                    variante_dificil: "SI HAY NINOS MAS GRANDES, SOLO PUEDEN AVANZAR DANDO SALTOS EN UN SOLO PIE.",
+                    variante_dificil: "SOLO PUEDEN AVANZAR DANDO SALTOS EN UN SOLO PIE.",
                     nota_seguridad: "RETIRAR MESAS O SILLAS CON ESQUINAS PRONUNCIADAS CERCA DEL AREA DE SALTOS."
                 }, categoryImages[energy]);
             }, 700);
@@ -584,3 +551,5 @@ Materiales disponibles: ${materials}.`;
     </script>
 </body>
 </html>
+
+```
