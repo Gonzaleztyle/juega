@@ -1,3 +1,15 @@
+¡Aquí lo tienes listo! He actualizado la estructura completa del **`index.html`** para usar **únicamente la paleta y los pares de contraste del afiche "SHOWTOWN"**:
+
+* **Entrada de API Key:** Fondo blanco neutro (`#FFFFFF`) con etiqueta coral/naranja (`#DC7C58`), para diferenciarla visualmente del resto.
+* **Encabezado (Letra S/H):** Rojo (`#D73B26`) sobre Amarillo (`#EFC42D`).
+* **Formulario Principal (Letra W):** Verde (`#447865`) sobre Rosa (`#E2A5D4`).
+* **Botón Principal (Letra O superior):** Amarillo (`#EFC42D`) sobre Rojo (`#D73B26`).
+* **Botón de Pruebas (Letra V):** Blanco sobre Azul marino (`#2948B5`).
+* **Resultados del Juego (Letra O inferior):** Celeste (`#82C1E5`) sobre Azul marino (`#2948B5`).
+
+Copia y reemplaza todo tu archivo con este código:
+
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,15 +19,17 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         :root {
-            --bg-main: #F4EFEB;
             --border-dark: #121212;
-            
-            /* Colores Exactos del PDF */
-            --color-blue: #2948B5;      /* R: 41, G: 72, B: 181 */
-            --color-pink: #E2A5D4;      /* R: 226, G: 165, B: 212 */
-            --color-yellow: #EFC42D;    /* R: 239, G: 196, B: 45 */
-            --color-red: #D73B26;       /* R: 215, G: 59, B: 38 */
-            --color-green: #447865;     /* R: 68, G: 120, B: 101 */
+            --color-bg-body: #F2D174;   /* Fondo suave del lienzo */
+
+            /* PALETA SHOWTOWN EXPLICITA */
+            --color-red: #D73B26;       /* Rojo / Naranja */
+            --color-green: #447865;     /* Verde oscuro */
+            --color-blue: #2948B5;      /* Azul marino */
+            --color-yellow: #EFC42D;    /* Amarillo brillante */
+            --color-pink: #E2A5D4;      /* Rosa */
+            --color-cyan: #82C1E5;      /* Celeste */
+            --color-coral: #DC7C58;     /* Naranja salmón */
             --color-white: #FFFFFF;
             --color-black: #121212;
         }
@@ -29,7 +43,7 @@
         }
 
         body {
-            background-color: var(--bg-main);
+            background-color: var(--color-bg-body);
             color: var(--color-black);
             line-height: 1.4;
             padding: 24px 16px;
@@ -42,42 +56,70 @@
             margin-bottom: 28px;
         }
 
-        /* 1. AZUL SOBRE AMARILLO */
+        /* BLOQUE HEADER: ROJO SOBRE AMARILLO (S SOBRE H) */
         .title-block-1 {
             display: inline-block;
             background: var(--color-yellow);
-            color: var(--color-blue);
+            color: var(--color-red);
             padding: 12px 24px;
-            border: 3px solid var(--border-dark);
-            box-shadow: 5px 5px 0px var(--border-dark);
-            transform: rotate(-1.5deg);
+            border: 4px solid var(--border-dark);
+            box-shadow: 6px 6px 0px var(--border-dark);
         }
 
         .title-block-1 h1 {
             font-size: 2.2rem;
             font-weight: 900;
-            color: var(--color-blue);
+            color: var(--color-red);
         }
 
-        /* 2. AZUL SOBRE ROJO */
         header p {
             display: inline-block;
-            background: var(--color-red);
+            background: var(--color-cyan);
             color: var(--color-blue);
             padding: 6px 12px;
             font-size: 0.85rem;
             font-weight: 900;
             margin-top: 14px;
-            border: 2px solid var(--border-dark);
+            border: 3px solid var(--border-dark);
         }
 
-        /* 3. ROSADO SOBRE AZUL */
+        /* CONTENEDOR DE API KEY CON FONDO Y ESTILO NEUTRO */
+        #api-key-container {
+            background: var(--color-white);
+            color: var(--color-black);
+            border: 4px solid var(--border-dark);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            box-shadow: 5px 5px 0px var(--border-dark);
+        }
+
+        #api-key-container label {
+            background: var(--color-coral);
+            color: var(--color-white);
+            padding: 6px 10px;
+            border: 2px solid var(--border-dark);
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 900;
+        }
+
+        #api-key-container small {
+            display: block;
+            margin-top: 8px;
+            font-weight: 800;
+            color: var(--color-black);
+        }
+
+        /* FORMULARIO: VERDE SOBRE ROSA (LETRA W) */
         .card {
-            background: var(--color-blue);
-            color: var(--color-pink);
-            border-radius: 20px;
+            background: var(--color-pink);
+            color: var(--color-green);
+            border-radius: 16px;
             padding: 24px;
-            border: 3px solid var(--border-dark);
+            border: 4px solid var(--border-dark);
             box-shadow: 6px 6px 0px var(--border-dark);
             margin-bottom: 28px;
         }
@@ -86,7 +128,6 @@
             margin-bottom: 20px;
         }
 
-        /* 1. AZUL SOBRE AMARILLO */
         label {
             display: inline-flex;
             align-items: center;
@@ -95,21 +136,19 @@
             margin-bottom: 8px;
             font-size: 0.85rem;
             padding: 6px 12px;
-            background: var(--color-yellow);
-            color: var(--color-blue);
+            background: var(--color-green);
+            color: var(--color-pink);
             border: 2px solid var(--border-dark);
-            box-shadow: 2px 2px 0px var(--border-dark);
             border-radius: 6px;
         }
 
-        /* 5. NEGRO SOBRE BLANCO */
         input[type="text"], input[type="number"], select {
             width: 100%;
             padding: 12px 14px;
             border: 3px solid var(--border-dark);
-            border-radius: 12px;
+            border-radius: 8px;
             font-size: 0.95rem;
-            font-weight: 700;
+            font-weight: 800;
             outline: none;
             background: var(--color-white);
             color: var(--color-black);
@@ -122,7 +161,6 @@
             margin-top: 8px;
         }
 
-        /* 5. NEGRO SOBRE BLANCO */
         .checkbox-label {
             display: flex;
             align-items: center;
@@ -133,7 +171,7 @@
             background: var(--color-white);
             color: var(--color-black);
             padding: 10px 12px;
-            border-radius: 12px;
+            border-radius: 8px;
             border: 2px solid var(--border-dark);
             box-shadow: 2px 2px 0px var(--border-dark);
         }
@@ -142,70 +180,42 @@
             cursor: pointer;
             width: 18px;
             height: 18px;
-            accent-color: var(--color-blue);
+            accent-color: var(--color-green);
         }
 
-        /* 4. VERDE SOBRE ROSADO */
+        /* BOTON: AMARILLO SOBRE ROJO (LETRA O SUPERIOR) */
         .btn {
             width: 100%;
-            background: var(--color-pink);
-            color: var(--color-green);
-            border: 3px solid var(--border-dark);
-            padding: 14px;
-            font-size: 1rem;
+            background: var(--color-red);
+            color: var(--color-yellow);
+            border: 4px solid var(--border-dark);
+            padding: 16px;
+            font-size: 1.05rem;
             font-weight: 900;
-            border-radius: 14px;
+            border-radius: 12px;
             cursor: pointer;
-            box-shadow: 4px 4px 0px var(--border-dark);
+            box-shadow: 5px 5px 0px var(--border-dark);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
         }
 
-        /* 1. AZUL SOBRE AMARILLO */
+        /* BOTON DEMO: BLANCO SOBRE AZUL (LETRA V) */
         .btn-demo {
-            background: var(--color-yellow);
-            color: var(--color-blue);
+            background: var(--color-blue);
+            color: var(--color-white);
             margin-top: 12px;
         }
 
-        /* 3. ROSADO SOBRE AZUL */
-        #api-key-container {
-            background: var(--color-blue);
-            color: var(--color-pink);
-            border: 3px solid var(--border-dark);
-            padding: 14px;
-            border-radius: 16px;
-            margin-bottom: 20px;
-            box-shadow: 4px 4px 0px var(--border-dark);
-        }
-
-        #api-key-container label {
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            padding: 0;
-            color: var(--color-pink);
-            font-weight: 900;
-            font-size: 0.9rem;
-        }
-
-        #api-key-container small {
-            color: var(--color-pink);
-            display: block;
-            margin-top: 6px;
-            font-weight: 800;
-        }
-
-        /* 5. NEGRO SOBRE BLANCO */
+        /* RESULTADOS: CELESTE SOBRE AZUL (LETRA O INFERIOR) */
         .card-result {
-            background: var(--color-white);
-            color: var(--color-black);
+            background: var(--color-blue);
+            color: var(--color-cyan);
             display: none;
-            border-radius: 20px;
+            border-radius: 16px;
             padding: 24px;
-            border: 3px solid var(--border-dark);
+            border: 4px solid var(--border-dark);
             box-shadow: 6px 6px 0px var(--border-dark);
         }
 
@@ -213,16 +223,15 @@
             width: 100%;
             height: 220px;
             object-fit: cover;
-            border-radius: 14px;
+            border-radius: 12px;
             border: 3px solid var(--border-dark);
             margin-bottom: 20px;
         }
 
-        /* 2. AZUL SOBRE ROJO */
         .game-title {
             display: inline-block;
-            background: var(--color-red);
-            color: var(--color-blue);
+            background: var(--color-yellow);
+            color: var(--color-red);
             padding: 10px 16px;
             border: 3px solid var(--border-dark);
             box-shadow: 4px 4px 0px var(--border-dark);
@@ -249,15 +258,14 @@
             border: 2px solid var(--border-dark);
         }
 
-        .badge-1 { background: var(--color-yellow); color: var(--color-blue); }
+        .badge-1 { background: var(--color-yellow); color: var(--color-red); }
         .badge-2 { background: var(--color-pink); color: var(--color-green); }
-        .badge-3 { background: var(--color-red); color: var(--color-blue); }
+        .badge-3 { background: var(--color-cyan); color: var(--color-blue); }
 
-        /* 5. NEGRO SOBRE BLANCO */
         .game-section {
             background: var(--color-white);
-            border: 2px solid var(--border-dark);
-            border-radius: 14px;
+            border: 3px solid var(--border-dark);
+            border-radius: 12px;
             padding: 16px;
             margin-bottom: 16px;
             color: var(--color-black);
@@ -275,29 +283,27 @@
             box-shadow: 3px 3px 0px var(--border-dark);
         }
 
-        /* COMBINACIONES PERMITIDAS EN SECCIONES */
-        .section-adult h3 { background: var(--color-yellow); color: var(--color-blue); } /* 1 */
-        .section-kids h3 { background: var(--color-pink); color: var(--color-green); }    /* 4 */
-        .section-steps h3 { background: var(--color-red); color: var(--color-blue); }     /* 2 */
-        .section-extra h3 { background: var(--color-blue); color: var(--color-pink); }    /* 3 */
+        .section-adult h3 { background: var(--color-yellow); color: var(--color-red); }
+        .section-kids h3 { background: var(--color-pink); color: var(--color-green); }
+        .section-steps h3 { background: var(--color-cyan); color: var(--color-blue); }
+        .section-extra h3 { background: var(--color-coral); color: var(--color-white); }
 
         .game-section p, .game-section ol {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--color-black);
         }
 
         .game-section ol { padding-left: 20px; }
         .game-section ol li { margin-bottom: 8px; }
 
-        /* 5. NEGRO SOBRE BLANCO */
         .loading {
             text-align: center;
             display: none;
             padding: 30px;
             background: var(--color-white);
             color: var(--color-black);
-            border-radius: 20px;
-            border: 3px solid var(--border-dark);
+            border-radius: 16px;
+            border: 4px solid var(--border-dark);
             box-shadow: 6px 6px 0px var(--border-dark);
         }
 
@@ -313,15 +319,13 @@
 
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-        /* 2. AZUL SOBRE ROJO */
         .safety-box {
-            background: var(--color-red);
-            color: var(--color-blue);
+            background: var(--color-coral);
+            color: var(--color-white);
             border: 3px solid var(--border-dark);
             padding: 14px;
-            border-radius: 14px;
+            border-radius: 10px;
             margin-top: 20px;
-            font-size: 0.85rem;
             font-weight: 800;
         }
     </style>
@@ -338,8 +342,8 @@
 
     <div id="api-key-container">
         <label for="apiKey"><i data-lucide="key"></i> GROQ API KEY (GRATIS):</label>
-        <input type="text" id="apiKey" placeholder="gsk_...">
-        <small>PEGA TU API KEY DE GROQ O PRUEBA CON EL BOTON DE MUESTRA.</small>
+        <input type="text" id="apiKey" placeholder="gsk_..." style="margin-top: 8px;">
+        <small>PEGA TU API KEY DE GROQ O USA EL BOTON AZUL DE MUESTRA.</small>
     </div>
 
     <div class="card">
@@ -414,7 +418,7 @@
             e.preventDefault();
             const apiKey = document.getElementById('apiKey').value.trim();
             if (!apiKey) {
-                alert('PEGA TU API KEY DE GROQ O USA EL BOTON AMARILLO DE DEMO.');
+                alert('PEGA TU API KEY DE GROQ O USA EL BOTON AZUL DE DEMO.');
                 return;
             }
             await generateGame(apiKey);
@@ -549,3 +553,5 @@ REGLAS ABSOLUTAS:
     </script>
 </body>
 </html>
+
+```
