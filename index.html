@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,16 +8,14 @@
     <style>
         :root {
             --border-dark: #121212;
-            --color-bg-body: #F2D174;   /* Fondo suave del lienzo */
-
-            /* PALETA SHOWTOWN EXPLICITA */
-            --color-red: #D73B26;       /* Rojo / Naranja */
-            --color-green: #447865;     /* Verde oscuro */
-            --color-blue: #2948B5;      /* Azul marino */
-            --color-yellow: #EFC42D;    /* Amarillo brillante */
-            --color-pink: #E2A5D4;      /* Rosa */
-            --color-cyan: #82C1E5;      /* Celeste */
-            --color-coral: #DC7C58;     /* Naranja salmón */
+            --color-bg-body: #F2D174;
+            --color-red: #D73B26;
+            --color-green: #447865;
+            --color-blue: #2948B5;
+            --color-yellow: #EFC42D;
+            --color-pink: #E2A5D4;
+            --color-cyan: #82C1E5;
+            --color-coral: #DC7C58;
             --color-white: #FFFFFF;
             --color-black: #121212;
         }
@@ -45,7 +42,6 @@
             margin-bottom: 28px;
         }
 
-        /* BLOQUE HEADER: ROJO SOBRE AMARILLO (S SOBRE H) */
         .title-block-1 {
             display: inline-block;
             background: var(--color-yellow);
@@ -72,37 +68,6 @@
             border: 3px solid var(--border-dark);
         }
 
-        /* CONTENEDOR DE API KEY CON FONDO Y ESTILO NEUTRO */
-        #api-key-container {
-            background: var(--color-white);
-            color: var(--color-black);
-            border: 4px solid var(--border-dark);
-            padding: 16px;
-            border-radius: 12px;
-            margin-bottom: 24px;
-            box-shadow: 5px 5px 0px var(--border-dark);
-        }
-
-        #api-key-container label {
-            background: var(--color-coral);
-            color: var(--color-white);
-            padding: 6px 10px;
-            border: 2px solid var(--border-dark);
-            border-radius: 6px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 900;
-        }
-
-        #api-key-container small {
-            display: block;
-            margin-top: 8px;
-            font-weight: 800;
-            color: var(--color-black);
-        }
-
-        /* FORMULARIO: VERDE SOBRE ROSA (LETRA W) */
         .card {
             background: var(--color-pink);
             color: var(--color-green);
@@ -172,7 +137,6 @@
             accent-color: var(--color-green);
         }
 
-        /* BOTON: AMARILLO SOBRE ROJO (LETRA O SUPERIOR) */
         .btn {
             width: 100%;
             background: var(--color-red);
@@ -190,14 +154,12 @@
             gap: 10px;
         }
 
-        /* BOTON DEMO: BLANCO SOBRE AZUL (LETRA V) */
         .btn-demo {
             background: var(--color-blue);
             color: var(--color-white);
             margin-top: 12px;
         }
 
-        /* RESULTADOS: CELESTE SOBRE AZUL (LETRA O INFERIOR) */
         .card-result {
             background: var(--color-blue);
             color: var(--color-cyan);
@@ -329,12 +291,6 @@
         <p>JUEGOS FISICOS Y MANUALIDADES 100% SIN PANTALLAS</p>
     </header>
 
-    <div id="api-key-container">
-        <label for="apiKey"><i data-lucide="key"></i> GROQ API KEY (GRATIS):</label>
-        <input type="text" id="apiKey" placeholder="gsk_..." style="margin-top: 8px;">
-        <small>PEGA TU API KEY DE GROQ O USA EL BOTON AZUL DE MUESTRA.</small>
-    </div>
-
     <div class="card">
         <form id="gameForm">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
@@ -405,12 +361,7 @@
 
         document.getElementById('gameForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const apiKey = document.getElementById('apiKey').value.trim();
-            if (!apiKey) {
-                alert('PEGA TU API KEY DE GROQ O USA EL BOTON AZUL DE DEMO.');
-                return;
-            }
-            await generateGame(apiKey);
+            await generateGame();
         });
 
         document.getElementById('btnMock').addEventListener('click', showMockResult);
@@ -423,7 +374,7 @@
             'Teatro y Roles': 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=800&q=80'
         };
 
-        async function generateGame(apiKey) {
+        async function generateGame() {
             const numKids = document.getElementById('numKids').value;
             const ages = document.getElementById('ages').value;
             const location = document.getElementById('location').value;
@@ -443,29 +394,17 @@ REGLAS ABSOLUTAS:
             showLoading(true);
 
             try {
-                const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                const response = await fetch('/api/generate', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`
-                    },
-                    body: JSON.stringify({
-                        model: 'llama-3.3-70b-versatile',
-                        messages: [
-                            { role: 'system', content: systemPrompt },
-                            { role: 'user', content: userPrompt }
-                        ],
-                        response_format: { type: "json_object" },
-                        temperature: 0.7
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ systemPrompt, userPrompt })
                 });
 
                 const data = await response.json();
                 if (data.error) {
-                    alert('ERROR DE GROQ: ' + data.error.message);
+                    alert('ERROR: ' + data.error);
                 } else {
-                    const gameData = JSON.parse(data.choices[0].message.content);
-                    renderGame(gameData, categoryImages[energy]);
+                    renderGame(data, categoryImages[energy]);
                 }
             } catch (err) {
                 alert('ERROR DE CONEXION: ' + err.message);
@@ -542,5 +481,3 @@ REGLAS ABSOLUTAS:
     </script>
 </body>
 </html>
-
-```
