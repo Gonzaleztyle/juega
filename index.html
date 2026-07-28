@@ -3,481 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PLAYCRAFT AI - JUEGOS SIN PANTALLAS</title>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Generador de Juegos Infantiles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --border-dark: #121212;
-            --color-bg-body: #F2D174;
-            --color-red: #D73B26;
-            --color-green: #447865;
-            --color-blue: #2948B5;
-            --color-yellow: #EFC42D;
-            --color-pink: #E2A5D4;
-            --color-cyan: #82C1E5;
-            --color-coral: #DC7C58;
-            --color-white: #FFFFFF;
-            --color-black: #121212;
+            --bg-color: #E2E8F0;
+            --card-bg: #FFFFFF;
+            --border-color: #0F172A;
+            --primary: #FF5964;
+            --primary-hover: #E0434E;
+            --secondary: #35A7FF;
+            --accent: #FFE66D;
+            --text-main: #0F172A;
+            --radius: 16px;
+            --shadow: 4px 4px 0px #0F172A;
         }
 
         * {
             box-sizing: border-box;
+            font-family: 'Fredoka', sans-serif;
             margin: 0;
             padding: 0;
-            font-family: 'Helvetica', 'Arial', sans-serif;
-            text-transform: uppercase;
         }
 
         body {
-            background-color: var(--color-bg-body);
-            color: var(--color-black);
-            line-height: 1.4;
-            padding: 24px 16px;
-            max-width: 800px;
-            margin: 0 auto;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 28px;
-        }
-
-        .title-block-1 {
-            display: inline-block;
-            background: var(--color-yellow);
-            color: var(--color-red);
-            padding: 12px 24px;
-            border: 4px solid var(--border-dark);
-            box-shadow: 6px 6px 0px var(--border-dark);
-        }
-
-        .title-block-1 h1 {
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--color-red);
-        }
-
-        header p {
-            display: inline-block;
-            background: var(--color-cyan);
-            color: var(--color-blue);
-            padding: 6px 12px;
-            font-size: 0.85rem;
-            font-weight: 900;
-            margin-top: 14px;
-            border: 3px solid var(--border-dark);
-        }
-
-        .card {
-            background: var(--color-pink);
-            color: var(--color-green);
-            border-radius: 16px;
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: var(--card-bg);
+            border: 3px solid var(--border-color);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             padding: 24px;
-            border: 4px solid var(--border-dark);
-            box-shadow: 6px 6px 0px var(--border-dark);
-            margin-bottom: 28px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-main);
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         label {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 900;
+            display: block;
+            font-weight: 600;
             margin-bottom: 8px;
-            font-size: 0.85rem;
-            padding: 6px 12px;
-            background: var(--color-green);
-            color: var(--color-pink);
-            border: 2px solid var(--border-dark);
-            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
         }
 
         input[type="text"], input[type="number"], select {
             width: 100%;
-            padding: 12px 14px;
-            border: 3px solid var(--border-dark);
-            border-radius: 8px;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
             font-size: 0.95rem;
-            font-weight: 800;
+            background-color: #F8FAFC;
             outline: none;
-            background: var(--color-white);
-            color: var(--color-black);
         }
 
-        .checkbox-group {
+        input:focus, select:focus {
+            border-color: var(--secondary);
+        }
+
+        .materials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-            gap: 10px;
-            margin-top: 8px;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 8px;
         }
 
         .checkbox-label {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-weight: 800;
-            font-size: 0.8rem;
-            cursor: pointer;
-            background: var(--color-white);
-            color: var(--color-black);
-            padding: 10px 12px;
+            gap: 6px;
+            font-weight: normal;
+            font-size: 0.85rem;
+            background: #F1F5F9;
+            padding: 8px 10px;
             border-radius: 8px;
-            border: 2px solid var(--border-dark);
-            box-shadow: 2px 2px 0px var(--border-dark);
+            border: 1px solid #CBD5E1;
+            cursor: pointer;
+            user-select: none;
         }
 
         .checkbox-label input {
             cursor: pointer;
-            width: 18px;
-            height: 18px;
-            accent-color: var(--color-green);
         }
 
-        .btn {
+        .btn-submit {
             width: 100%;
-            background: var(--color-red);
-            color: var(--color-yellow);
-            border: 4px solid var(--border-dark);
-            padding: 16px;
-            font-size: 1.05rem;
-            font-weight: 900;
-            border-radius: 12px;
-            cursor: pointer;
-            box-shadow: 5px 5px 0px var(--border-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .btn-demo {
-            background: var(--color-blue);
-            color: var(--color-white);
-            margin-top: 12px;
-        }
-
-        .card-result {
-            background: var(--color-blue);
-            color: var(--color-cyan);
-            display: none;
-            border-radius: 16px;
-            padding: 24px;
-            border: 4px solid var(--border-dark);
-            box-shadow: 6px 6px 0px var(--border-dark);
-        }
-
-        .game-header-banner {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 12px;
-            border: 3px solid var(--border-dark);
-            margin-bottom: 20px;
-        }
-
-        .game-title {
-            display: inline-block;
-            background: var(--color-yellow);
-            color: var(--color-red);
-            padding: 10px 16px;
-            border: 3px solid var(--border-dark);
-            box-shadow: 4px 4px 0px var(--border-dark);
-            font-size: 1.5rem;
-            font-weight: 900;
-            margin-bottom: 16px;
-        }
-
-        .badges-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 800;
-            border: 2px solid var(--border-dark);
-        }
-
-        .badge-1 { background: var(--color-yellow); color: var(--color-red); }
-        .badge-2 { background: var(--color-pink); color: var(--color-green); }
-        .badge-3 { background: var(--color-cyan); color: var(--color-blue); }
-
-        .game-section {
-            background: var(--color-white);
-            border: 3px solid var(--border-dark);
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 16px;
-            color: var(--color-black);
-        }
-
-        .game-section h3 {
-            font-size: 0.95rem;
-            margin-bottom: 12px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 900;
-            padding: 6px 12px;
-            border: 2px solid var(--border-dark);
-            box-shadow: 3px 3px 0px var(--border-dark);
-        }
-
-        .section-adult h3 { background: var(--color-yellow); color: var(--color-red); }
-        .section-kids h3 { background: var(--color-pink); color: var(--color-green); }
-        .section-steps h3 { background: var(--color-cyan); color: var(--color-blue); }
-        .section-extra h3 { background: var(--color-coral); color: var(--color-white); }
-
-        .game-section p, .game-section ol {
+            background-color: var(--primary);
+            color: white;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: var(--color-black);
-        }
-
-        .game-section ol { padding-left: 20px; }
-        .game-section ol li { margin-bottom: 8px; }
-
-        .loading {
-            text-align: center;
-            display: none;
-            padding: 30px;
-            background: var(--color-white);
-            color: var(--color-black);
-            border-radius: 16px;
-            border: 4px solid var(--border-dark);
-            box-shadow: 6px 6px 0px var(--border-dark);
-        }
-
-        .spinner {
-            border: 6px solid #f3f3f3;
-            border-top: 6px solid var(--color-blue);
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 16px;
-        }
-
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        .safety-box {
-            background: var(--color-coral);
-            color: var(--color-white);
-            border: 3px solid var(--border-dark);
             padding: 14px;
-            border-radius: 10px;
+            border: 3px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 3px 3px 0px var(--border-color);
+            cursor: pointer;
+            transition: all 0.1s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-hover);
+            transform: translate(-1px, -1px);
+            box-shadow: 4px 4px 0px var(--border-color);
+        }
+
+        .btn-submit:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px var(--border-color);
+        }
+
+        /* Área de Carga */
+        #loading {
+            display: none;
+            text-align: center;
             margin-top: 20px;
-            font-weight: 800;
+            padding: 20px;
+            background: #FFFBEB;
+            border: 2px dashed #F59E0B;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        /* Resultado del juego */
+        #resultCard {
+            display: none;
+            margin-top: 24px;
+            background: #F0FDF4;
+            border: 3px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        #resultCard h2 {
+            font-size: 1.5rem;
+            color: #166534;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0F172A;
+            margin-top: 12px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-content {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #334155;
+        }
+
+        .steps-list {
+            padding-left: 20px;
+            margin-top: 4px;
+        }
+
+        .steps-list li {
+            margin-bottom: 6px;
+        }
+
+        .rule-box {
+            background: #FEF2F2;
+            border-left: 4px solid #EF4444;
+            padding: 8px 12px;
+            margin-top: 12px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: #991B1B;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="title-block-1">
-            <h1>PLAYCRAFT AI</h1>
-        </div>
-        <br>
-        <p>JUEGOS FISICOS Y MANUALIDADES 100% SIN PANTALLAS</p>
-    </header>
+<div class="container">
+    <h1>🎈 Creador de Juegos Infantiles</h1>
 
-    <div class="card">
-        <form id="gameForm">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-                <div class="form-group">
-                    <label for="numKids"><i data-lucide="users"></i> N DE NINOS:</label>
-                    <input type="number" id="numKids" min="1" max="10" value="2" required>
-                </div>
-                <div class="form-group">
-                    <label for="ages"><i data-lucide="baby"></i> EDADES:</label>
-                    <input type="text" id="ages" value="4 Y 6 ANOS" required>
-                </div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-                <div class="form-group">
-                    <label for="location"><i data-lucide="map-pin"></i> UBICACION:</label>
-                    <select id="location">
-                        <option value="Interior (Casa / Depto)">INTERIOR (CASA)</option>
-                        <option value="Exterior (Patio / Parque)">EXTERIOR (PATIO/PARQUE)</option>
-                        <option value="Espacio muy reducido">ESPACIO REDUCIDO</option>
-                        <option value="Habitación a oscuras">HABITACION A OSCURAS</option>
-                        <option value="Mesa de comedor / Cocina">MESA / COCINA</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="energy"><i data-lucide="zap"></i> DINAMICA:</label>
-                    <select id="energy">
-                        <option value="Alta energía (Moverse, carreras)">MOVERSE / CARRERAS</option>
-                        <option value="Creativo y Manualidades">CREATIVO / ARTE</option>
-                        <option value="Tranquilo y Trabajo en equipo">LOGICA / TRANQUILO</option>
-                        <option value="Búsqueda del tesoro / Pistas">BUSQUEDA DEL TESORO</option>
-                        <option value="Teatro y Roles">TEATRO Y ACTUACION</option>
-                    </select>
-                </div>
-            </div>
-
+    <form id="gameForm">
+        <div class="row">
             <div class="form-group">
-                <label><i data-lucide="box"></i> MATERIALES DISPONIBLES:</label>
-                <div class="checkbox-group">
-                    <label class="checkbox-label"><input type="checkbox" value="Papel y lápices" checked> PAPEL / LAPICES</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Cajas de cartón"> CARTON</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Cinta adhesiva" checked> CINTA ADHESIVA</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Globos"> GLOBOS</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Calcetines o Cojines" checked> CALCETINES / COJINES</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Vasos de plástico"> VASOS PLASTICOS</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Lana / Hilo"> LANA / HILO</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Linterna"> LINTERNA</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Platos de papel"> PLATOS DE PAPEL</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Pinzas de ropa"> PINZAS DE ROPA</label>
-                    <label class="checkbox-label"><input type="checkbox" value="Ninguno (Solo imaginación)"> SOLO MENTE</label>
-                </div>
+                <label for="numKids">👥 N° de Niños:</label>
+                <input type="number" id="numKids" min="1" value="2" required>
             </div>
+            <div class="form-group">
+                <label for="ageRange">🎂 Edades:</label>
+                <input type="text" id="ageRange" value="4 y 6 años" placeholder="Ej: 3 a 5 años" required>
+            </div>
+        </div>
 
-            <button type="submit" class="btn"><i data-lucide="sparkles"></i> GENERAR JUEGO CON GROQ</button>
-            <button type="button" id="btnMock" class="btn btn-demo"><i data-lucide="play-circle"></i> PROBAR CON RESPUESTA DE PRUEBA</button>
-        </form>
+        <div class="row">
+            <div class="form-group">
+                <label for="location">📍 Ubicación:</label>
+                <select id="location">
+                    <option value="Interior (Casa/Departamento)">Interior (Casa/Depto)</option>
+                    <option value="Exterior (Jardín/Parque)">Exterior (Jardín/Parque)</option>
+                    <option value="Espacio Reducido">Espacio Reducido</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dynamic">⚡ Dinámica:</label>
+                <select id="dynamic">
+                    <option value="Moverse / Carreras">Moverse / Carreras</option>
+                    <option value="Tranquilo / Sentados">Tranquilo / Sentados</option>
+                    <option value="Trabajo en equipo">Trabajo en equipo</option>
+                    <option value="Busqueda del tesoro">Búsqueda del tesoro</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>📦 Materiales Disponibles:</label>
+            <div class="materials-grid">
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Papel y lápices" checked> Papel y lápices</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Cartón"> Cartón</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Cinta adhesiva" checked> Cinta adhesiva</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Globos"> Globos</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Calcetines / Cojines" checked> Calcetines/Cojines</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Vasos plásticos"> Vasos plásticos</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Lana / Hilo"> Lana / Hilo</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Linterna"> Linterna</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Platos de papel"> Platos de papel</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Pinzas de ropa"> Pinzas de ropa</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Ninguno (Solo la mente)" checked> Solo mente</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">✨ ¡CREAR JUEGO FÁCIL!</button>
+    </form>
+
+    <div id="loading">🚀 Creando un juego súper fácil de entender...</div>
+
+    <div id="resultCard">
+        <h2 id="gameTitle"></h2>
+        
+        <div class="section-title">🎯 Misión:</div>
+        <p id="gameMission" class="section-content"></p>
+
+        <div class="section-title">🛠️ Preparación rápida:</div>
+        <p id="gamePrep" class="section-content"></p>
+
+        <div class="section-title">🎮 Cómo se juega (paso a paso):</div>
+        <ol id="gameSteps" class="steps-list"></ol>
+
+        <div class="rule-box">
+            <strong>⚠️ Regla de oro:</strong> <span id="gameRule"></span>
+        </div>
     </div>
+</div>
 
-    <div class="loading" id="loading">
-        <div class="spinner"></div>
-        <p style="font-weight: 800; font-size: 1.1rem; color: var(--color-black);">INVENTANDO UNA SUPER AVENTURA SEGURA...</p>
-    </div>
+<script>
+    document.getElementById('gameForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
 
-    <div class="card-result" id="result"></div>
+        const numKids = document.getElementById('numKids').value;
+        const ageRange = document.getElementById('ageRange').value;
+        const location = document.getElementById('location').value;
+        const dynamic = document.getElementById('dynamic').value;
 
-    <script>
-        lucide.createIcons();
+        const checkedMaterials = Array.from(document.querySelectorAll('input[name="materials"]:checked'))
+                                      .map(cb => cb.value);
 
-        document.getElementById('gameForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            await generateGame();
-        });
+        const loadingDiv = document.getElementById('loading');
+        const resultCard = document.getElementById('resultCard');
 
-        document.getElementById('btnMock').addEventListener('click', showMockResult);
+        loadingDiv.style.display = 'block';
+        resultCard.style.display = 'none';
 
-        const categoryImages = {
-            'Alta energía (Moverse, carreras)': 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80',
-            'Creativo y Manualidades': 'https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&w=800&q=80',
-            'Tranquilo y Trabajo en equipo': 'https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=800&q=80',
-            'Búsqueda del tesoro / Pistas': 'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80',
-            'Teatro y Roles': 'https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=800&q=80'
-        };
+        // Prompt reforzado para garantizar máxima claridad y sencillez
+        const systemPrompt = `Eres un experto en recreación infantil y educación inicial. Tu meta es inventar un juego ultra divertido pero SÚPER SIMPLE de entender para niños y sus padres.
+Usa un lenguaje claro, cotidiano y entusiasta. Evita texto largo, explicaciones complejas o palabras difíciles.
 
-        async function generateGame() {
-            const numKids = document.getElementById('numKids').value;
-            const ages = document.getElementById('ages').value;
-            const location = document.getElementById('location').value;
-            const energy = document.getElementById('energy').value;
-            
-            const materials = Array.from(document.querySelectorAll('.checkbox-group input:checked'))
-                                   .map(cb => cb.value).join(', ') || 'NINGUNO';
+Debes responder ÚNICAMENTE en formato JSON estricto con las siguientes claves:
+{
+  "titulo": "Nombre corto y llamativo del juego con emojis",
+  "mision": "Explicación en UNA sola frase súper clara de qué hay que hacer para ganar o completar el juego.",
+  "preparacion": "Cómo acomodar las cosas en menos de 1 minuto.",
+  "pasos": [
+    "Paso 1 muy corto y directo",
+    "Paso 2 muy corto y directo",
+    "Paso 3 muy corto y directo (máximo 4 pasos en total)"
+  ],
+  "reglaOro": "Una sola norma clave o recomendación de seguridad corta."
+}`;
 
-            const systemPrompt = `Eres un experto en pedagogía infantil. Tu trabajo es diseñar un juego FÍSICO Y DESCONECTADO.
-REGLAS ABSOLUTAS:
-1. NUNCA sugieras pantallas, apps, videos o búsquedas en internet.
-2. Formato strictly JSON con los campos: "titulo", "duracion", "preparacion_adulto", "materiales_usados", "reglas_ninos", "pasos_juego", "variante_dificil", "nota_seguridad".
-3. Tono apto para todo público, divertido y seguro. Cero peligros físicos.`;
+        const userPrompt = `Crea un juego simple con estos datos:
+- Niños: ${numKids}
+- Edades: ${ageRange}
+- Lugar: ${location}
+- Dinámica: ${dynamic}
+- Materiales que tenemos: ${checkedMaterials.join(', ') || 'Ninguno'}`;
 
-            const userPrompt = `Crea un juego para ${numKids} niños de ${ages}. Ubicación: ${location}. Tipo: ${energy}. Materiales: ${materials}.`;
+        try {
+            const response = await fetch('/api/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ systemPrompt, userPrompt })
+            });
 
-            showLoading(true);
+            const data = await response.json();
 
-            try {
-                const response = await fetch('/api/generate', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ systemPrompt, userPrompt })
-                });
-
-                const data = await response.json();
-                if (data.error) {
-                    alert('ERROR: ' + data.error);
-                } else {
-                    renderGame(data, categoryImages[energy]);
-                }
-            } catch (err) {
-                alert('ERROR DE CONEXION: ' + err.message);
-            } finally {
-                showLoading(false);
+            if (!response.ok) {
+                alert('Error: ' + (data.error || 'Ocurrió un problema al generar el juego.'));
+                return;
             }
+
+            // Llenar datos en pantalla
+            document.getElementById('gameTitle').textContent = data.titulo || '¡A Jugar!';
+            document.getElementById('gameMission').textContent = data.mision || '';
+            document.getElementById('gamePrep').textContent = data.preparacion || '';
+
+            const stepsList = document.getElementById('gameSteps');
+            stepsList.innerHTML = '';
+            if (Array.isArray(data.pasos)) {
+                data.pasos.forEach(paso => {
+                    const li = document.createElement('li');
+                    li.textContent = paso;
+                    stepsList.appendChild(li);
+                });
+            }
+
+            document.getElementById('gameRule').textContent = data.reglaOro || '';
+
+            resultCard.style.display = 'block';
+
+        } catch (err) {
+            alert('Error de conexión: ' + err.message);
+        } finally {
+            loadingDiv.style.display = 'none';
         }
+    });
+</script>
 
-        function renderGame(data, imageUrl) {
-            const resultDiv = document.getElementById('result');
-            resultDiv.style.display = 'block';
-
-            let pasosHTML = data.pasos_juego.map(paso => `<li>${paso}</li>`).join('');
-
-            resultDiv.innerHTML = `
-                <img src="${imageUrl || 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80'}" class="game-header-banner">
-                <h2 class="game-title">${data.titulo}</h2>
-                <div class="badges-container">
-                    <div class="badge badge-1"><i data-lucide="clock" size="16"></i> ${data.duracion || '20 MIN'}</div>
-                    <div class="badge badge-2"><i data-lucide="package" size="16"></i> ${data.materiales_usados || 'SIMPLES'}</div>
-                    <div class="badge badge-3"><i data-lucide="shield-check" size="16"></i> 100% SEGURO</div>
-                </div>
-                <div class="game-section section-adult">
-                    <h3><i data-lucide="wrench" size="18"></i> PREPARACION PARA EL ADULTO:</h3>
-                    <p>${data.preparacion_adulto || 'NINGUNA. LISTOS PARA ARRANCAR.'}</p>
-                </div>
-                <div class="game-section section-kids">
-                    <h3><i data-lucide="mega-phone" size="18"></i> INSTRUCCIONES PARA LOS NINOS:</h3>
-                    <p style="font-weight: 800;">"${data.reglas_ninos}"</p>
-                </div>
-                <div class="game-section section-steps">
-                    <h3><i data-lucide="gamepad-2" size="18"></i> PASOS DEL JUEGO:</h3>
-                    <ol>${pasosHTML}</ol>
-                </div>
-                ${data.variante_dificil ? `
-                <div class="game-section section-extra">
-                    <h3><i data-lucide="zap" size="18"></i> MODO DESAFIO EXTRA:</h3>
-                    <p>${data.variante_dificil}</p>
-                </div>` : ''}
-                <div class="safety-box">
-                    <strong>NOTA DE SEGURIDAD:</strong> ${data.nota_seguridad || 'ASEGURATE DE DESPEJAR LA ZONA DE JUEGO.'}
-                </div>
-            `;
-            lucide.createIcons();
-            resultDiv.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showMockResult() {
-            showLoading(true);
-            const energy = document.getElementById('energy').value;
-            setTimeout(() => {
-                showLoading(false);
-                renderGame({
-                    titulo: "EL PUENTE MAGICO DE CALCETINES",
-                    duracion: "20 MINUTOS",
-                    materiales_usados: "CALCETINES Y CINTA",
-                    preparacion_adulto: "PEGA DOS TIRAS DE CINTA EN EL SUELO PARA DELIMITAR EL RIO MISTICO.",
-                    reglas_ninos: "EL SUELO DEL SALON ES UN LAGO DE LAVA HIRVIENDO. SALTEN DE ISLA EN ISLA USANDO LOS CALCETINES.",
-                    pasos_juego: [
-                        "CADA JUGADOR RECIBE 3 PARES DE CALCETINES HECHOS PELOTA.",
-                        "DEBEN IR LANZANDO UN CALCETIN HACIA ADELANTE PARA CONSTRUIR SU CAMINO.",
-                        "TIENEN QUE RESCATAR LOS TESOROS Y VOLVER A LA ORILLA."
-                    ],
-                    variante_dificil: "SOLO PUEDEN AVANZAR DANDO SALTOS EN UN SOLO PIE.",
-                    nota_seguridad: "RETIRAR MESAS O SILLAS CON ESQUINAS PRONUNCIADAS CERCA DEL AREA DE SALTOS."
-                }, categoryImages[energy]);
-            }, 700);
-        }
-
-        function showLoading(isLoading) {
-            document.getElementById('loading').style.display = isLoading ? 'block' : 'none';
-            if (isLoading) document.getElementById('result').style.display = 'none';
-        }
-    </script>
 </body>
 </html>
