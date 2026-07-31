@@ -87,7 +87,7 @@
 
         .materials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(135px, 1fr));
             gap: 8px;
         }
 
@@ -96,7 +96,7 @@
             align-items: center;
             gap: 6px;
             font-weight: 700;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             background: #D3D3D3;
             padding: 8px 10px;
             border-radius: 8px;
@@ -235,10 +235,13 @@
             <div class="form-group">
                 <label for="dynamic">⚡ DINÁMICA:</label>
                 <select id="dynamic">
-                    <option value="Moverse / Carreras">MOVERSE / CARRERAS</option>
-                    <option value="Tranquilo / Sentados">TRANQUILO / SENTADOS</option>
+                    <option value="Creatividad / Construcción">CREATIVIDAD / CONSTRUCCIÓN</option>
+                    <option value="Búsqueda del tesoro / Pistas">BÚSQUEDA DEL TESORO / PISTAS</option>
+                    <option value="Habilidad / Puntería / Retos">HABILIDAD / PUNTERÍA / RETOS</option>
+                    <option value="Juego Simbólico / Roles">JUEGO SIMBÓLICO / ROLES</option>
+                    <option value="Moverse / Destreza física">MOVERSE / DESTREZA FÍSICA</option>
+                    <option value="Tranquilo / Calma / Arte">TRANQUILO / CALMA / ARTE</option>
                     <option value="Trabajo en equipo">TRABAJO EN EQUIPO</option>
-                    <option value="Busqueda del tesoro">BÚSQUEDA DEL TESORO</option>
                 </select>
             </div>
         </div>
@@ -246,29 +249,32 @@
         <div class="form-group">
             <label>📦 MATERIALES DISPONIBLES:</label>
             <div class="materials-grid">
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Agua"> AGUA</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Pinturas y pinceles"> PINTURAS / PINCELES</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Tizas"> TIZAS</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Cuerda"> CUERDA</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Lana / Hilo" checked> LANA / HILO</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Cojines" checked> COJINES</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Sábanas / Mantas" checked> SÁBANAS / MANTAS</label>
                 <label class="checkbox-label"><input type="checkbox" name="materials" value="Papel y lápices" checked> PAPEL / LÁPICES</label>
-                <label class="checkbox-label"><input type="checkbox" name="materials" value="Cartón"> CARTÓN</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Cajas de cartón"> CARTÓN</label>
                 <label class="checkbox-label"><input type="checkbox" name="materials" value="Cinta adhesiva" checked> CINTA ADHESIVA</label>
                 <label class="checkbox-label"><input type="checkbox" name="materials" value="Globos"> GLOBOS</label>
-                <label class="checkbox-label"><input type="checkbox" name="materials" value="Calcetines / Cojines" checked> CALCETINES / COJINES</label>
-                <label class="checkbox-label"><input type="checkbox" name="materials" value="Vasos plásticos"> VASOS PLÁSTICOS</label>
-                <label class="checkbox-label"><input type="checkbox" name="materials" value="Lana / Hilo"> LANA / HILO</label>
+                <label class="checkbox-label"><input type="checkbox" name="materials" value="Vasos / Platos descartables"> VASOS / PLATOS</label>
                 <label class="checkbox-label"><input type="checkbox" name="materials" value="Linterna"> LINTERNA</label>
-                <label class="checkbox-label"><input type="checkbox" name="materials" value="Platos de papel"> PLATOS DE PAPEL</label>
                 <label class="checkbox-label"><input type="checkbox" name="materials" value="Pinzas de ropa"> PINZAS DE ROPA</label>
-                <label class="checkbox-label"><input type="checkbox" name="materials" value="Ninguno (Solo la mente)" checked> SOLO MENTE</label>
             </div>
         </div>
 
         <button type="submit" class="btn-submit">✨ GENERAR JUEGO CON GROQ</button>
     </form>
 
-    <div id="loading">🚀 INVENTANDO UNA SÚPER AVENTURA SEGURA...</div>
+    <div id="loading">🚀 INVENTANDO UNA SÚPER AVENTURA...</div>
 
     <div id="resultCard">
         <h2 id="gameTitle"></h2>
         
-        <div class="section-title">🎯 MISIÓNSUPER SIMPLE:</div>
+        <div class="section-title">🎯 MISIÓN:</div>
         <p id="gameMission" class="section-content"></p>
 
         <div class="section-title">🛠️ PREPARACIÓN (1 MINUTO):</div>
@@ -301,27 +307,30 @@
         loadingDiv.style.display = 'block';
         resultCard.style.display = 'none';
 
-        const systemPrompt = `Eres un experto en juegos infantiles. Tu objetivo es inventar un juego ULTRA SENCILLO de entender para niños pequeños.
-Explicaciones súper breves, directas y en lenguaje común sin complicaciones.
+        const systemPrompt = `Eres un diseñador experto en juegos infantiles dinámicos, originales y variados. 
+TUS REGLAS OBLIGATORIAS:
+1. NUNCA propongas siempre carreras o relevos simples a menos que la dinámica explícitamente lo pida. Sé muy creativo aprovechando las características físicas y sensoriales de los materiales seleccionados (ej: usar sábanas para fuertes/refugios, agua para trasvasar/flotar, lana para redes de espías, tizas para laberintos o circuitos de retos, etc.).
+2. La explicación debe ser ULTRA SENCILLA y breve, fácil de entender para niños de la edad especificada.
+3. El lenguaje debe ser directo, en español neutro, sin párrafos largos.
 
 Debes responder ÚNICAMENTE en formato JSON estricto:
 {
-  "titulo": "Nombre corto y genial del juego",
-  "mision": "En 1 sola frase muy clara explica qué deben hacer para ganar.",
-  "preparacion": "Poner los materiales en menos de 1 minuto.",
+  "titulo": "Nombre corto y emocionante del juego",
+  "mision": "En 1 sola frase muy clara explica el objetivo final del juego.",
+  "preparacion": "Preparación rápida del espacio o materiales en menos de 1 minuto.",
   "pasos": [
-    "Paso 1 muy corto",
-    "Paso 2 muy corto",
-    "Paso 3 muy corto (máximo 4 pasos)"
+    "Paso 1 ultra corto y accionable",
+    "Paso 2 ultra corto",
+    "Paso 3 ultra corto (máximo 4 pasos)"
   ],
-  "reglaOro": "Una regla básica de seguridad o de buena convivencia corta."
+  "reglaOro": "Una regla clave de seguridad, cuidado del hogar o buena convivencia."
 }`;
 
-        const userPrompt = `Juego para:
+        const userPrompt = `Inventa un juego original con las siguientes características:
 - Niños: ${numKids} (${ageRange})
 - Lugar: ${location}
-- Tipo: ${dynamic}
-- Materiales: ${checkedMaterials.join(', ') || 'Ninguno'}`;
+- Dinámica deseada: ${dynamic}
+- Materiales seleccionados para integrar en el juego: ${checkedMaterials.length > 0 ? checkedMaterials.join(', ') : 'Ningún material específico (usar elementos del entorno)'}`;
 
         try {
             const response = await fetch('/api/generate', {
